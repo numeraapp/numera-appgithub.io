@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numera - Tu app de finanzas personales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #05050a;
+            --bg-surface: rgba(255, 255, 255, 0.03);
+            --bg-surface-hover: rgba(255, 255, 255, 0.08);
+            --primary: #8652FF;
+            --primary-glow: rgba(134, 82, 255, 0.4);
+            --primary-dark: #4A10D6;
+            --secondary: #CC99FF;
+            --accent-green: #10B981;
+            --accent-red: #ef4444;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="white" fill-opacity="0.95" stroke="white" stroke-width="1.5" stroke-opacity="0.35"/></svg>') 12 12, auto !important;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR / BANNER SUPERIOR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background: rgba(5, 5, 10, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        /* BOTÓN HAMBURGUESA */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001; /* Para que quede por encima del menú al abrirse */
+        }
+
+        .hamburger svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        /* MENÚ MÓVIL DESPLEGABLE */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(5, 5, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+        }
+
+        .mobile-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-link:hover {
+            color: white;
+        }
+
+        /* Fondo con resplandor ambiental */
+        .ambient-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(100px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(74, 16, 214, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Efecto de luz que sigue al cursor */
+        .cursor-glow {
+            position: fixed;
+            width: 220px;
+            height: 220px;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+            filter: blur(1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 3rem; /* Añadido padding top extra por el navbar */
+            gap: 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        .brand-hero {
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(to right, #ffffff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            word-break: break-word;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(134, 82, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--secondary);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(134, 82, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            background: linear-gradient(to right, #ffffff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            font-weight: 400;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid var(--border-glass);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-surface-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary-large {
+            background: white;
+            color: var(--bg-base);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 30px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Mockup y demo */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            perspective: 1000px;
+            animation: fadeUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .device-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .device-glow {
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            filter: blur(40px);
+            opacity: 0.5;
+            border-radius: 50px;
+            z-index: 0;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
+        }
+
+        .device-mockup {
+            width: min(320px, 80vw);
+            height: auto;
+            aspect-ratio: 320 / 660;
+            background: #0a0a0f;
+            border-radius: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                inset 0 0 0 6px #1a1a24,
+                0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .device-notch {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 25px;
+            background: #1a1a24;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 10;
+        }
+
+        .app-demo {
+            flex: 1;
+            padding: 3rem 1.25rem 1.25rem;
+            background: #0f0f16;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            overflow-y: auto;
+        }
+
+        .demo-header h2 {
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .demo-balance-card {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: 24px;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(74, 16, 214, 0.3);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-balance-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(20px);
+        }
+
+        .demo-balance-card:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+
+        .balance-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .balance-amount {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .demo-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .demo-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-income {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-expense {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-red);
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .demo-btn:active {
+            transform: scale(0.95);
+        }
+
+        .demo-transactions {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 1.25rem;
+            flex: 1;
+            overflow-y: auto;
+            min-height: 150px;
+        }
+
+        .demo-transactions::-webkit-scrollbar {
+            display: none;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: slideInRight 0.4s ease-out;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .tx-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            margin-right: 12px;
+        }
+
+        /* Bento Features */
+        .features-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            grid-auto-rows: minmax(250px, auto);
+        }
+
+        .bento-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(134, 82, 255, 0.06), transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(134, 82, 255, 0.3);
+            background: var(--bg-surface-hover);
+        }
+
+        .bento-large {
+            grid-column: span 2;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bento-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        /* Animaciones */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+        }
+
+        @keyframes pulseGlow {
+            from {
+                opacity: 0.4;
+                filter: blur(40px) scale(0.95);
+            }
+            to {
+                opacity: 0.7;
+                filter: blur(50px) scale(1.05);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ====== MEDIA QUERIES PARA ADAPTACIÓN TOTAL ====== */
+        /* Tablets horizontales y pantallas medianas */
+        @media (max-width: 1200px) {
+            .hero {
+                gap: 2rem;
+            }
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bento-large {
+                grid-column: span 2;
+            }
+        }
+
+        /* Tablets verticales y pantallas pequeñas */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 7rem;
+                gap: 3rem;
+            }
+            .hero-content {
+                margin-bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            .hero p {
+                max-width: 600px;
+            }
+            .cta-group {
+                justify-content: center;
+            }
+            .hero-visual {
+                width: 100%;
+            }
+            .device-mockup {
+                width: 280px;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-large {
+                grid-column: span 1;
+            }
+        }
+
+        /* Móviles grandes (AQUÍ ACTUAMOS CON EL NAVBAR) */
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; 
+            }
+            .hamburger { 
+                display: block; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            .brand-hero {
+                font-size: 3.5rem;
+            }
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary-large,
+            .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+            .device-mockup {
+                width: 260px;
+            }
+        }
+
+        /* Móviles pequeños */
+        @media (max-width: 380px) {
+            .brand-hero {
+                font-size: 2.8rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .demo-balance-card {
+                padding: 1.2rem;
+            }
+            .balance-amount {
+                font-size: 1.8rem;
+            }
+            .demo-btn {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+            .device-mockup {
+                width: 240px;
+            }
+        }
+
+        /* Pantallas muy grandes (monitores 4K) */
+        @media (min-width: 1800px) {
+            .hero, .features-section {
+                max-width: 1600px;
+                margin: 0 auto;
+            }
+            .device-mockup {
+                width: 380px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (BANNER SUPERIOR) -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">Numera</a>
+        <div class="nav-links">
+            <a href="privacidad.html" class="nav-link">Política de Privacidad</a>
+            <a href="terminos.html" class="nav-link">Términos de Servicio</a>
+        </div>
+        <!-- Botón Hamburguesa -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+            <svg id="hamburgerIcon" viewBox="0 0 24 24">
+                <!-- Icono de 3 rayas por defecto -->
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- MENÚ MÓVIL (OCULTO POR DEFECTO) -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="privacidad.html" class="mobile-link">Política de Privacidad</a>
+        <a href="terminos.html" class="mobile-link">Términos de Servicio</a>
+    </div>
+
+    <!-- RESTO DE LA PÁGINA ORIGINAL -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="brand-hero">NUMERA</div>
+            <div class="badge">✨ Nueva versión 2.0 disponible</div>
+            <h1>Tus finanzas,<br>sin compromisos.</h1>
+            <p>Descubre la app definitiva para controlar tu dinero, gestionar deudas y guardar tus tarjetas de fidelidad. Completamente offline, con máxima privacidad y una estética incomparable.</p>
+            <div class="cta-group">
+                <a href="#demo" class="btn-primary-large">Probar Demo Interfaz</a>
+                <a href="#features" class="btn-outline">Ver Características</a>
+            </div>
+        </div>
+
+        <div class="hero-visual" id="demo">
+            <div class="device-wrapper">
+                <div class="device-glow"></div>
+                <div class="device-mockup">
+                    <div class="device-notch"></div>
+                    <div class="app-demo">
+                        <div class="demo-header">
+                            <h2>Inicio</h2>
+                        </div>
+
+                        <div class="demo-balance-card" id="balanceCard">
+                            <div class="balance-label">Balance Total</div>
+                            <div class="balance-amount" id="balanceValue">€ 1,250.00</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7; display: flex; align-items: center; gap: 4px;">
+                                <span>👆</span> Interactúa con los botones
+                            </div>
+                        </div>
+
+                        <div class="demo-actions">
+                            <button class="demo-btn btn-income" onclick="addTransaction('income')">
+                                <span style="font-size: 1.2rem;">+</span> Ingreso
+                            </button>
+                            <button class="demo-btn btn-expense" onclick="addTransaction('expense')">
+                                <span style="font-size: 1.2rem;">-</span> Gasto
+                            </button>
+                        </div>
+
+                        <div class="demo-transactions">
+                            <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;">Movimientos recientes</h3>
+                            <div id="txList">
+                                <div class="transaction-item">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="tx-icon">💸</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: white;">Nómina</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Hoy</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--accent-green); font-weight: 700;">+ € 1,300.00</div>
+                                </div>
+                                <div class="transaction-item">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="tx-icon">🛒</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: white;">Supermercado</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Ayer</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--accent-red); font-weight: 700;">- € 50.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <h2 class="section-title">Diseñada para ti</h2>
+        <div class="bento-grid">
+            <div class="bento-card bento-large">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacidad Absoluta</h3>
+                <p>Numera funciona 100% offline. Tus datos se guardan exclusivamente en el almacenamiento local de tu dispositivo. Sin cuentas, sin rastreadores, sin servidores de terceros. Puedes exportar una copia de seguridad JSON cuando quieras.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="feature-icon">📱</div>
+                <h3>Tarjetas de Fidelidad</h3>
+                <p>Olvida el plástico. Escanea o sube imágenes de los códigos QR de tus supermercados, asígnales un color y tenlos siempre a mano listos para pasar por caja.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Metas de Ahorro</h3>
+                <p>Define objetivos claros (como un viaje o un coche nuevo) y visualiza tu progreso con barras gráficas. Mantén la motivación intacta cada día.</p>
+            </div>
+
+            <div class="bento-card bento-large">
+                <div class="feature-icon">🤝</div>
+                <h3>Control de Deudas</h3>
+                <p>¿Le prestaste dinero a un amigo? ¿Te pagaron la cena? Registra fácilmente quién te debe dinero y a quién le debes, con cálculos automáticos que mantienen las cuentas claras sin romper amistades.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // --- LÓGICA DEL MENÚ HAMBURGUESA ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        let menuOpen = false;
+
+        hamburgerBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.add('open');
+                // Cambia el icono a una "X"
+                hamburgerIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
+            } else {
+                mobileMenu.classList.remove('open');
+                // Vuelve al icono de hamburguesa normal
+                hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
+            }
+        });
+
+        // Cierra el menú al hacer clic en un enlace (por si el usuario lo necesita)
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.remove('open');
+                hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
+            });
+        });
+
+
+        // --- LÓGICA DE LA DEMO DE LA APP ---
+        let balance = 1250.00;
+
+        function formatMoney(amount) {
+            return '€ ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function addTransaction(type) {
+            const list = document.getElementById('txList');
+            const amount = Math.floor(Math.random() * 80) + 5;
+
+            if (type === 'income') {
+                balance += amount;
+            } else {
+                balance -= amount;
+            }
+
+            document.getElementById('balanceValue').innerText = formatMoney(balance);
+
+            const item = document.createElement('div');
+            item.className = 'transaction-item';
+
+            const isIncome = type === 'income';
+            const title = isIncome ? 'Bizum recibido' : 'Suscripción';
+            const icon = isIncome ? '💰' : '🎵';
+            const color = isIncome ? 'var(--accent-green)' : 'var(--accent-red)';
+            const sign = isIncome ? '+' : '-';
+
+            item.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <div class="tx-icon">${icon}</div>
+                    <div>
+                        <div style="font-weight: 600; color: white;">${title}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Justo ahora</div>
+                    </div>
+                </div>
+                <div style="color: ${color}; font-weight: 700;">${sign} € ${amount.toFixed(2)}</div>
+            `;
+
+            list.insertBefore(item, list.firstChild);
+
+            if (list.children.length > 4) {
+                list.removeChild(list.lastChild);
+            }
+
+            const card = document.getElementById('balanceCard');
+            card.style.transform = 'scale(1.05) translateY(-5px)';
+            card.style.boxShadow = `0 20px 40px ${isIncome ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`;
+
+            setTimeout(() => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }, 300);
+        }
+
+        // Efecto de brillo en tarjetas bento
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Rastro de luz que sigue al cursor
+        const cursorGlow = document.getElementById('cursorGlow');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorGlow.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
