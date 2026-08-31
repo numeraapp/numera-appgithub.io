@@ -3,34 +3,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Política de Privacidad · Numera</title>
+    <title>Política de Privacidad Global · Numera</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* Variables y diseño global */
         :root { --bg-base: #05050a; --bg-surface: rgba(255, 255, 255, 0.03); --primary: #8652FF; --primary-glow: rgba(134, 82, 255, 0.4); --text-main: #ffffff; --text-muted: #9ca3af; --border-glass: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-
-        /* Navbar */
         .navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; background: rgba(5, 5, 10, 0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); z-index: 1000; }
         .nav-brand { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; }
         .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s ease; }
         .nav-link:hover, .nav-link.active { color: white; }
         .nav-link.active { border-bottom: 2px solid var(--primary); }
-
-        /* Hamburguesa */
         .hamburger { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; z-index: 1001; }
         .hamburger svg { width: 32px; height: 32px; fill: currentColor; }
         .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5, 5, 10, 0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; z-index: 999; transform: translateY(-100%); transition: transform 0.4s ease; }
         .mobile-menu.open { transform: translateY(0); }
         .mobile-link { color: var(--text-muted); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
         .mobile-link:hover { color: white; }
-
-        /* Glows */
         .ambient-glow { position: fixed; top: -20%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); filter: blur(100px); z-index: -1; }
-        
-        /* Contenido Legal */
         .privacy-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 5% 4rem; }
         .privacy-container { max-width: 900px; width: 100%; background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 48px; padding: 3.5rem 4rem; backdrop-filter: blur(12px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8); }
         .privacy-container h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; background: linear-gradient(to right, #ffffff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -41,7 +32,6 @@
         .highlight-box { background: rgba(134, 82, 255, 0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 16px; margin: 2rem 0; }
         .highlight-box p { margin-bottom: 0; color: var(--text-main); }
         .contact-box { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 2rem; border: 1px solid var(--border-glass); }
-
         @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .privacy-container { padding: 2rem 1.5rem; border-radius: 32px; } }
     </style>
 </head>
@@ -66,34 +56,38 @@
 
     <section class="privacy-section">
         <div class="privacy-container">
-            <h1>Política de Privacidad de Numera</h1>
+            <h1>Política de Privacidad Global</h1>
             <div class="update-date">Última actualización: Agosto de 2026</div>
 
-            <p>El equipo de <strong>Numera</strong> ("la Aplicación") ha diseñado esta herramienta bajo el principio de <strong>"Privacidad por Diseño"</strong>. Al utilizar nuestra aplicación, aceptas el tratamiento de datos tal y como se expone en este documento. Esta política cumple con los requisitos del RGPD y LOPDGDD (Europa), así como con las leyes de Protección de Datos Personales vigentes en Latinoamérica.</p>
+            <p>El equipo de <strong>Numera</strong> ("la Aplicación") ha diseñado esta herramienta bajo el principio de <strong>"Privacidad por Diseño"</strong>. Al utilizar nuestra aplicación, aceptas el tratamiento de datos tal y como se expone en este documento. Esta política está redactada para cumplir con los estándares de privacidad más estrictos a nivel internacional.</p>
 
-            <h2>1. Datos que recopilamos (Y los que no)</h2>
-            <p><strong>Numera es una aplicación Offline.</strong> Toda la información financiera, deudas, metas y notas que introduces se almacena de forma 100% local en la memoria de tu dispositivo. Nosotros <strong>no tenemos servidores propios</strong>, no recopilamos ni interceptamos tus datos, y no los compartimos ni vendemos a terceros. </p>
+            <h2>1. Datos que recopilamos (Cero Datos Personales)</h2>
+            <p><strong>Numera es una aplicación 100% Offline y Descentralizada.</strong> Toda la información que introduces (finanzas, deudas, metas) se almacena de forma local en la memoria de tu dispositivo. <strong>No tenemos servidores, bases de datos en la nube ni sistemas de rastreo.</strong> Nosotros no recopilamos, interceptamos, compartimos ni vendemos absolutamente ningún dato tuyo.</p>
 
             <h2>2. Uso de Google Drive (Copias de Seguridad)</h2>
-            <p>Si decides activar la función opcional de <strong>"Copia de seguridad en la nube"</strong>, Numera solicitará tu permiso explícito para conectar con tu cuenta de Google Drive. </p>
+            <p>Si decides activar la función opcional de copia de seguridad en la nube, Numera solicitará acceso a tu cuenta de Google Drive.</p>
             <div class="highlight-box">
-                <p>🔒 <strong>Acceso Restringido:</strong> Utilizamos el permiso estricto (<code>drive.file</code>), lo que significa legal y técnicamente que Numera <strong>solo puede ver, crear y modificar el archivo específico de copia de seguridad que ella misma genera</strong>. No tenemos acceso a tus correos, fotos u otros documentos personales.</p>
+                <p>🔒 <strong>Acceso Restringido:</strong> Utilizamos el permiso de acceso más estricto (<code>drive.file</code>). Esto garantiza técnica y legalmente que Numera <strong>solo puede ver, crear y modificar el archivo específico de copia de seguridad que ella misma genera</strong>. No tenemos permiso para leer tus correos, fotos u otros documentos.</p>
             </div>
 
-            <h2>3. Tus Derechos y Control de tus Datos (Derechos ARCO)</h2>
-            <p>Como usuario y titular de los datos, tú tienes el control absoluto. Puedes ejercer tus derechos de Acceso, Rectificación, Cancelación y Oposición directamente desde la Aplicación sin necesidad de contactarnos:</p>
+            <h2>3. Cumplimiento Legal Internacional (RGPD, CCPA, LGPD)</h2>
+            <p>Al no recopilar datos en servidores, Numera cumple por defecto con:</p>
             <p>
-                <strong>- Eliminación completa:</strong> Puedes borrar el 100% de tus datos usando el botón "Borrar Todo" en los Ajustes de la App, y el botón "Eliminar copia de seguridad de Drive" para destruir el archivo de la nube.<br>
-                <strong>- Desinstalación:</strong> Al desinstalar la app, se borrarán todos los datos locales automáticamente.
+                <strong>🇪🇺 Europa (RGPD y LOPDGDD):</strong> No hay transferencias internacionales de datos ni tratamiento por nuestra parte. Tú eres el único custodio de tus datos.<br>
+                <strong>🇺🇸 Estados Unidos (CCPA/CPRA):</strong> No vendemos, alquilamos ni compartimos información personal de residentes de California ni de ningún otro estado.<br>
+                <strong>🇧🇷 Brasil y LATAM (LGPD y Leyes ARCO):</strong> Garantizamos tus derechos de Acceso, Rectificación, Cancelación y Oposición, los cuales puedes ejercer instantáneamente desde los ajustes de la propia app (botón "Borrar Todo").
             </p>
 
-            <h2>4. Rastreo, Analíticas y Cookies</h2>
-            <p>Para garantizar tu máxima privacidad, Numera <strong>NO utiliza</strong> herramientas de rastreo, cookies de seguimiento, Google Analytics, Firebase Crashlytics ni ningún otro software de telemetría o análisis de uso en la aplicación.</p>
+            <h2>4. Privacidad Infantil (COPPA)</h2>
+            <p>Numera no está dirigida a menores de 13 años y, al operar sin conexión y sin rastreadores, no recopilamos a sabiendas información personal de niños bajo ninguna circunstancia. Si un menor utiliza la aplicación, los datos permanecerán exclusivamente en su dispositivo físico.</p>
 
-            <h2>5. Contacto e Identificación</h2>
-            <p>Para cualquier consulta legal, duda sobre la gestión de tus datos o para ejercer derechos adicionales conforme a la legislación española o latinoamericana, puedes contactar con el responsable y desarrollador de la aplicación:</p>
+            <h2>5. Rastreo, Analíticas y Cookies</h2>
+            <p>Para garantizar tu máxima privacidad, Numera <strong>NO utiliza</strong> herramientas de rastreo publicitario, cookies de seguimiento, ni software de telemetría (como Google Analytics o Firebase Crashlytics).</p>
+
+            <h2>6. Contacto e Identificación</h2>
+            <p>Para cualquier consulta legal o relacionada con la privacidad internacional, puedes contactar con el desarrollador de la aplicación:</p>
             <div class="contact-box">
-                <p><strong>Contacto Legal:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary);">numera-app@outlook.es</a></p>
+                <p><strong>Contacto Legal Global:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary);">numera-app@outlook.es</a></p>
             </div>
         </div>
     </section>
@@ -103,7 +97,6 @@
         const mobileMenu = document.getElementById('mobileMenu');
         const hamburgerIcon = document.getElementById('hamburgerIcon');
         let menuOpen = false;
-
         hamburgerBtn.addEventListener('click', () => {
             menuOpen = !menuOpen;
             if (menuOpen) {
