@@ -6,318 +6,46 @@
     <title>Términos de Servicio · Numera</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* ===== MISMAS VARIABLES Y ESTILOS QUE LA WEB PRINCIPAL ===== */
-        :root {
-            --bg-base: #05050a;
-            --bg-surface: rgba(255, 255, 255, 0.03);
-            --bg-surface-hover: rgba(255, 255, 255, 0.08);
-            --primary: #8652FF;
-            --primary-glow: rgba(134, 82, 255, 0.4);
-            --primary-dark: #4A10D6;
-            --secondary: #CC99FF;
-            --accent-green: #10B981;
-            --accent-red: #ef4444;
-            --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --border-glass: rgba(255, 255, 255, 0.1);
-        }
+        /* Variables y diseño global */
+        :root { --bg-base: #05050a; --bg-surface: rgba(255, 255, 255, 0.03); --primary: #8652FF; --primary-glow: rgba(134, 82, 255, 0.4); --text-main: #ffffff; --text-muted: #9ca3af; --border-glass: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="white" fill-opacity="0.95" stroke="white" stroke-width="1.5" stroke-opacity="0.35"/></svg>') 12 12, auto !important;
-        }
+        /* Navbar */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; background: rgba(5, 5, 10, 0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); z-index: 1000; }
+        .nav-brand { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: white; }
+        .nav-link.active { border-bottom: 2px solid var(--primary); }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        /* Hamburguesa */
+        .hamburger { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .hamburger svg { width: 32px; height: 32px; fill: currentColor; }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5, 5, 10, 0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; z-index: 999; transform: translateY(-100%); transition: transform 0.4s ease; }
+        .mobile-menu.open { transform: translateY(0); }
+        .mobile-link { color: var(--text-muted); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
+        .mobile-link:hover { color: white; }
 
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 5%;
-            background: rgba(5, 5, 10, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-glass);
-            z-index: 1000;
-        }
+        /* Glows */
+        .ambient-glow { position: fixed; top: -20%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); filter: blur(100px); z-index: -1; }
+        
+        /* Contenido Legal */
+        .terms-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 5% 4rem; }
+        .terms-container { max-width: 900px; width: 100%; background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 48px; padding: 3.5rem 4rem; backdrop-filter: blur(12px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8); }
+        .terms-container h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; background: linear-gradient(to right, #ffffff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .update-date { display: inline-block; margin-top: 0.25rem; font-size: 0.95rem; color: var(--text-muted); border-bottom: 1px solid var(--border-glass); padding-bottom: 1.5rem; margin-bottom: 2rem; width: 100%; }
+        .terms-container h2 { font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; color: white; }
+        .terms-container p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        .terms-container strong { color: white; font-weight: 600; }
+        .highlight-box { background: rgba(134, 82, 255, 0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 16px; margin: 2rem 0; }
+        .highlight-box p { margin-bottom: 0; color: var(--text-main); }
+        .contact-box { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 2rem; border: 1px solid var(--border-glass); }
 
-        .nav-brand {
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
-        .nav-link.active {
-            color: white;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        /* HAMBURGUESA */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .hamburger svg {
-            width: 32px;
-            height: 32px;
-            fill: currentColor;
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(5, 5, 10, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
-            z-index: 999;
-            transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .mobile-menu.open {
-            transform: translateY(0);
-        }
-
-        .mobile-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-link:hover {
-            color: white;
-        }
-
-        /* GLOW AMBIENTAL */
-        .ambient-glow {
-            position: fixed;
-            top: -20%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0, 0, 0, 0) 70%);
-            filter: blur(100px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .ambient-glow-2 {
-            position: fixed;
-            bottom: -20%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(74, 16, 214, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
-            filter: blur(120px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* CURSOR GLOW */
-        .cursor-glow {
-            position: fixed;
-            width: 220px;
-            height: 220px;
-            pointer-events: none;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-            filter: blur(1px);
-        }
-
-        /* SECCIÓN PRINCIPAL DE TÉRMINOS */
-        .terms-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 5% 4rem;
-        }
-
-        .terms-container {
-            max-width: 900px;
-            width: 100%;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 48px;
-            padding: 3.5rem 4rem;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
-            animation: fadeUp 1s ease-out forwards;
-        }
-
-        .terms-container h1 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 0.25rem;
-            background: linear-gradient(to right, #ffffff, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .terms-container .update-date {
-            display: inline-block;
-            margin-top: 0.25rem;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-            width: 100%;
-        }
-
-        .terms-container h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem;
-            color: white;
-        }
-
-        .terms-container p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .terms-container strong {
-            color: white;
-            font-weight: 600;
-        }
-
-        .terms-container ul {
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0;
-        }
-
-        .terms-container ul li {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.75rem;
-        }
-
-        .terms-container ul li::before {
-            content: "▹";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-        }
-
-        .terms-container .highlight-box {
-            background: rgba(134, 82, 255, 0.08);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
-            margin: 2rem 0;
-        }
-
-        .terms-container .highlight-box p {
-            margin-bottom: 0;
-            color: var(--text-main);
-        }
-
-        /* ANIMACIONES */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            .terms-container {
-                padding: 2rem 1.5rem;
-                border-radius: 32px;
-            }
-            .terms-container h1 {
-                font-size: 2rem;
-            }
-            .terms-container .highlight-box {
-                padding: 1.2rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .terms-container {
-                padding: 1.5rem 1rem;
-            }
-            .terms-container p,
-            .terms-container ul li {
-                font-size: 0.95rem;
-            }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .terms-container { padding: 2rem 1.5rem; border-radius: 32px; } }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">Numera</a>
         <div class="nav-links">
@@ -325,49 +53,49 @@
             <a href="privacidad.html" class="nav-link">Política de Privacidad</a>
             <a href="terminos.html" class="nav-link active">Términos de Servicio</a>
         </div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
-            <svg id="hamburgerIcon" viewBox="0 0 24 24">
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-            </svg>
-        </button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú"><svg id="hamburgerIcon" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg></button>
     </nav>
 
-    <!-- MENÚ MÓVIL -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="mobile-link">Inicio</a>
         <a href="privacidad.html" class="mobile-link">Política de Privacidad</a>
         <a href="terminos.html" class="mobile-link">Términos de Servicio</a>
     </div>
 
-    <!-- GLOWS -->
     <div class="ambient-glow"></div>
-    <div class="ambient-glow-2"></div>
-    <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- CONTENIDO TÉRMINOS -->
     <section class="terms-section">
         <div class="terms-container">
-            <h1>Términos y Condiciones de Servicio de Numera</h1>
+            <h1>Términos y Condiciones de Numera</h1>
             <div class="update-date">Última actualización: Agosto de 2026</div>
 
-            <p>Al utilizar <strong>Numera</strong>, aceptas los siguientes términos:</p>
+            <h2>1. Aceptación de los Términos</h2>
+            <p>Al descargar, instalar o utilizar <strong>Numera</strong> ("la Aplicación"), estás aceptando y consintiendo voluntariamente estos Términos y Condiciones, así como nuestra Política de Privacidad. Si no estás de acuerdo con estos términos, por favor, procede a desinstalar y no utilizar la aplicación.</p>
 
-            <h2>Uso de la Herramienta</h2>
-            <p>Numera es una herramienta de organización personal y cálculo. No proporciona asesoramiento financiero, legal ni fiscal profesional. Las decisiones financieras que tomes basándote en los datos de la app son bajo tu propia responsabilidad.</p>
+            <h2>2. Finalidad y Uso de la Herramienta</h2>
+            <p>Numera es una aplicación diseñada como una herramienta personal y privada para la organización de finanzas, deudas, metas y productividad (Pomodoro). <strong>Numera no proporciona, ni sustituye, el asesoramiento financiero, contable, legal ni fiscal profesional.</strong> Cualquier decisión financiera que tomes fundamentada en los cálculos o datos visualizados en la app será bajo tu exclusiva responsabilidad y riesgo.</p>
 
-            <h2>Responsabilidad de los Datos</h2>
-            <p>El usuario es el único responsable de mantener la seguridad de su dispositivo y de su cuenta de Google. Numera no se hace responsable por la pérdida de datos en caso de robo del dispositivo, borrado accidental o pérdida de acceso a la cuenta de Google Drive.</p>
-
+            <h2>3. Responsabilidad sobre los Datos</h2>
+            <p>El usuario es el único responsable de mantener la seguridad y confidencialidad de su dispositivo móvil, contraseñas y cuenta de Google vinculada. Dado que Numera opera de forma <em>Offline</em> y no custodia tus datos en servidores propios:</p>
             <div class="highlight-box">
-                <p>⚠️ La aplicación se proporciona <strong>"tal cual"</strong>. Nos reservamos el derecho a actualizar, modificar o retirar funciones en el futuro para mejorar el servicio.</p>
+                <p>⚠️ <strong>Exención de responsabilidad:</strong> Numera no se hace responsable por la pérdida, corrupción o borrado accidental de datos ocasionado por robos del dispositivo, averías del mismo, o pérdida de acceso a la cuenta de Google Drive donde se alojan las copias de seguridad.</p>
             </div>
 
-            <p>Si no estás de acuerdo con estos términos, por favor, no uses la aplicación. El uso continuado implica la aceptación de los mismos.</p>
+            <h2>4. Aviso Legal y Cumplimiento LSSI</h2>
+            <p>Para dar cumplimiento a la Ley de Servicios de la Sociedad de la Información (LSSI) de España, así como a las normativas de transparencia comercial aplicables en las jurisdicciones de distribución, el desarrollo, soporte y titularidad de la presente aplicación están gestionados por un desarrollador independiente.</p>
+            
+            <div class="contact-box">
+                <p><strong>Responsable del Servicio:</strong> Desarrollador Independiente Numera</p>
+                <p><strong>Correo Electrónico de Contacto:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary);">numera-app@outlook.es</a></p>
+                <p><strong>Ámbito de Distribución:</strong> España y Latinoamérica.</p>
+            </div>
+
+            <h2>5. Modificaciones del Servicio</h2>
+            <p>La aplicación se proporciona "tal cual" y "según disponibilidad". Nos reservamos el derecho a actualizar, modificar, o interrumpir temporal o permanentemente funciones específicas en futuras versiones de la aplicación para garantizar un mejor rendimiento y seguridad.</p>
         </div>
     </section>
 
     <script>
-        // ===== MENÚ HAMBURGUESA =====
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const hamburgerIcon = document.getElementById('hamburgerIcon');
@@ -382,30 +110,6 @@
                 mobileMenu.classList.remove('open');
                 hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menuOpen = false;
-                mobileMenu.classList.remove('open');
-                hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
-            });
-        });
-
-        // ===== EFECTO DE LUZ SIGUIENTE AL CURSOR =====
-        const cursorGlow = document.getElementById('cursorGlow');
-
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursorGlow.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursorGlow.style.opacity = '1';
         });
     </script>
 </body>
