@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="google-site-verification" content="BmzIuNO5RnCor8JuQjjDIjsQqLYep4xe2040ObUo-24" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="BmzIuNO5RnCor8JuQjjDIjsQqLYep4xe2040ObUo-24" />
     <title>Numera - Tu app de finanzas personales</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -87,7 +87,7 @@
             color: white;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1001; /* Para que quede por encima del menú al abrirse */
+            z-index: 1001;
         }
 
         .hamburger svg {
@@ -177,7 +177,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 5% 3rem; /* Añadido padding top extra por el navbar */
+            padding: 8rem 5% 3rem;
             gap: 4rem;
             position: relative;
         }
@@ -270,6 +270,31 @@
         .btn-primary-large:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 30px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-donate {
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-donate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 30px rgba(244, 63, 94, 0.5);
+            color: white;
+        }
+        
+        .heart-icon {
+            fill: white;
         }
 
         /* Mockup y demo */
@@ -593,117 +618,48 @@
         }
 
         /* ====== MEDIA QUERIES PARA ADAPTACIÓN TOTAL ====== */
-        /* Tablets horizontales y pantallas medianas */
         @media (max-width: 1200px) {
-            .hero {
-                gap: 2rem;
-            }
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .bento-large {
-                grid-column: span 2;
-            }
+            .hero { gap: 2rem; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-large { grid-column: span 2; }
         }
 
-        /* Tablets verticales y pantallas pequeñas */
         @media (max-width: 992px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 7rem;
-                gap: 3rem;
-            }
-            .hero-content {
-                margin-bottom: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            .hero p {
-                max-width: 600px;
-            }
-            .cta-group {
-                justify-content: center;
-            }
-            .hero-visual {
-                width: 100%;
-            }
-            .device-mockup {
-                width: 280px;
-            }
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-            .bento-large {
-                grid-column: span 1;
-            }
+            .hero { flex-direction: column; text-align: center; padding-top: 7rem; gap: 3rem; }
+            .hero-content { margin-bottom: 0; display: flex; flex-direction: column; align-items: center; width: 100%; }
+            .hero p { max-width: 600px; }
+            .cta-group { justify-content: center; }
+            .hero-visual { width: 100%; }
+            .device-mockup { width: 280px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-large { grid-column: span 1; }
         }
 
-        /* Móviles grandes (AQUÍ ACTUAMOS CON EL NAVBAR) */
         @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-            }
-            .hamburger { 
-                display: block; 
-            }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
         }
 
         @media (max-width: 600px) {
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-            .brand-hero {
-                font-size: 3.5rem;
-            }
-            .cta-group {
-                flex-direction: column;
-                width: 100%;
-            }
-            .btn-primary-large,
-            .btn-outline {
-                width: 100%;
-                text-align: center;
-            }
-            .device-mockup {
-                width: 260px;
-            }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .brand-hero { font-size: 3.5rem; }
+            .cta-group { flex-direction: column; width: 100%; }
+            .btn-primary-large, .btn-outline, .btn-donate { width: 100%; text-align: center; }
+            .device-mockup { width: 260px; }
         }
 
-        /* Móviles pequeños */
         @media (max-width: 380px) {
-            .brand-hero {
-                font-size: 2.8rem;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .demo-balance-card {
-                padding: 1.2rem;
-            }
-            .balance-amount {
-                font-size: 1.8rem;
-            }
-            .demo-btn {
-                padding: 0.6rem;
-                font-size: 0.8rem;
-            }
-            .device-mockup {
-                width: 240px;
-            }
+            .brand-hero { font-size: 2.8rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .demo-balance-card { padding: 1.2rem; }
+            .balance-amount { font-size: 1.8rem; }
+            .demo-btn { padding: 0.6rem; font-size: 0.8rem; }
+            .device-mockup { width: 240px; }
         }
 
-        /* Pantallas muy grandes (monitores 4K) */
         @media (min-width: 1800px) {
-            .hero, .features-section {
-                max-width: 1600px;
-                margin: 0 auto;
-            }
-            .device-mockup {
-                width: 380px;
-            }
+            .hero, .features-section { max-width: 1600px; margin: 0 auto; }
+            .device-mockup { width: 380px; }
         }
     </style>
 </head>
@@ -719,7 +675,6 @@
         <!-- Botón Hamburguesa -->
         <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
             <svg id="hamburgerIcon" viewBox="0 0 24 24">
-                <!-- Icono de 3 rayas por defecto -->
                 <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
             </svg>
         </button>
@@ -745,6 +700,10 @@
             <div class="cta-group">
                 <a href="#demo" class="btn-primary-large">Probar Demo Interfaz</a>
                 <a href="#features" class="btn-outline">Ver Características</a>
+                <a href="https://gofund.me/05df84e00" target="_blank" class="btn-donate">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    Apoyar Proyecto
+                </a>
             </div>
         </div>
 
@@ -820,23 +779,66 @@
                 <h3>Tarjetas de Fidelidad</h3>
                 <p>Olvida el plástico. Escanea o sube imágenes de los códigos QR de tus supermercados, asígnales un color y tenlos siempre a mano listos para pasar por caja.</p>
             </div>
-
-            <div class="bento-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Metas de Ahorro</h3>
-                <p>Define objetivos claros (como un viaje o un coche nuevo) y visualiza tu progreso con barras gráficas. Mantén la motivación intacta cada día.</p>
-            </div>
-
-            <div class="bento-card bento-large">
-                <div class="feature-icon">🤝</div>
-                <h3>Control de Deudas</h3>
-                <p>¿Le prestaste dinero a un amigo? ¿Te pagaron la cena? Registra fácilmente quién te debe dinero y a quién le debes, con cálculos automáticos que mantienen las cuentas claras sin romper amistades.</p>
-            </div>
         </div>
     </section>
 
     <script>
-        // --- LÓGICA DEL MENÚ HAMBURGUESA ---
+        // Funciones interactivas (Demo)
+        let balance = 1250;
+        const balanceEl = document.getElementById('balanceValue');
+        const txList = document.getElementById('txList');
+
+        function formatMoney(amount) {
+            return '€ ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function addTransaction(type) {
+            const amount = type === 'income' ? Math.floor(Math.random() * 500) + 50 : Math.floor(Math.random() * 100) + 10;
+            const isIncome = type === 'income';
+            
+            balance += isIncome ? amount : -amount;
+            balanceEl.textContent = formatMoney(balance);
+            
+            // Efecto visual en la tarjeta
+            const card = document.getElementById('balanceCard');
+            card.style.transform = 'scale(0.98)';
+            setTimeout(() => card.style.transform = '', 150);
+
+            // Añadir a la lista
+            const txHTML = `
+                <div class="transaction-item">
+                    <div style="display: flex; align-items: center;">
+                        <div class="tx-icon">${isIncome ? '💰' : '☕'}</div>
+                        <div>
+                            <div style="font-weight: 600; color: white;">${isIncome ? 'Ingreso extra' : 'Gasto rápido'}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Ahora mismo</div>
+                        </div>
+                    </div>
+                    <div style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight: 700;">
+                        ${isIncome ? '+' : '-'} € ${amount.toFixed(2)}
+                    </div>
+                </div>
+            `;
+            txList.insertAdjacentHTML('afterbegin', txHTML);
+            if(txList.children.length > 4) txList.lastElementChild.remove();
+        }
+
+        // Efecto del ratón para el fondo y las tarjetas Bento
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.getElementById('cursorGlow');
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+
+            document.querySelectorAll('.bento-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Menú hamburguesa
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const hamburgerIcon = document.getElementById('hamburgerIcon');
@@ -846,105 +848,11 @@
             menuOpen = !menuOpen;
             if (menuOpen) {
                 mobileMenu.classList.add('open');
-                // Cambia el icono a una "X"
                 hamburgerIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
             } else {
                 mobileMenu.classList.remove('open');
-                // Vuelve al icono de hamburguesa normal
                 hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
-        });
-
-        // Cierra el menú al hacer clic en un enlace (por si el usuario lo necesita)
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menuOpen = false;
-                mobileMenu.classList.remove('open');
-                hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
-            });
-        });
-
-
-        // --- LÓGICA DE LA DEMO DE LA APP ---
-        let balance = 1250.00;
-
-        function formatMoney(amount) {
-            return '€ ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-        }
-
-        function addTransaction(type) {
-            const list = document.getElementById('txList');
-            const amount = Math.floor(Math.random() * 80) + 5;
-
-            if (type === 'income') {
-                balance += amount;
-            } else {
-                balance -= amount;
-            }
-
-            document.getElementById('balanceValue').innerText = formatMoney(balance);
-
-            const item = document.createElement('div');
-            item.className = 'transaction-item';
-
-            const isIncome = type === 'income';
-            const title = isIncome ? 'Bizum recibido' : 'Suscripción';
-            const icon = isIncome ? '💰' : '🎵';
-            const color = isIncome ? 'var(--accent-green)' : 'var(--accent-red)';
-            const sign = isIncome ? '+' : '-';
-
-            item.innerHTML = `
-                <div style="display: flex; align-items: center;">
-                    <div class="tx-icon">${icon}</div>
-                    <div>
-                        <div style="font-weight: 600; color: white;">${title}</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Justo ahora</div>
-                    </div>
-                </div>
-                <div style="color: ${color}; font-weight: 700;">${sign} € ${amount.toFixed(2)}</div>
-            `;
-
-            list.insertBefore(item, list.firstChild);
-
-            if (list.children.length > 4) {
-                list.removeChild(list.lastChild);
-            }
-
-            const card = document.getElementById('balanceCard');
-            card.style.transform = 'scale(1.05) translateY(-5px)';
-            card.style.boxShadow = `0 20px 40px ${isIncome ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`;
-
-            setTimeout(() => {
-                card.style.transform = '';
-                card.style.boxShadow = '';
-            }, 300);
-        }
-
-        // Efecto de brillo en tarjetas bento
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // Rastro de luz que sigue al cursor
-        const cursorGlow = document.getElementById('cursorGlow');
-
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursorGlow.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursorGlow.style.opacity = '1';
         });
     </script>
 </body>
