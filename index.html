@@ -661,6 +661,46 @@
             .hero, .features-section { max-width: 1600px; margin: 0 auto; }
             .device-mockup { width: 380px; }
         }
+
+        /* Modal Beta */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content {
+            background: var(--bg-base); border: 1px solid var(--border-glass);
+            border-radius: 24px; padding: 2.5rem; width: 90%; max-width: 500px;
+            position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 1rem; right: 1.5rem; background: none; border: none;
+            color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
+        }
+        .modal-close:hover { color: white; }
+        .beta-form { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; }
+        .form-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        .form-control {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
+            border-radius: 12px; padding: 0.8rem 1rem; color: white; font-family: inherit;
+            outline: none; transition: border-color 0.3s ease;
+        }
+        .form-control:focus { border-color: var(--primary); }
+        textarea.form-control { resize: vertical; min-height: 100px; }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; padding: 1rem; border-radius: 12px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 20px var(--primary-glow); }
+        .success-message { display: none; text-align: center; padding: 2rem 0; }
+        .success-message h3 { color: var(--accent-green); margin-bottom: 0.5rem; }
     </style>
 </head>
 <body>
@@ -698,6 +738,9 @@
             <h1>Tus finanzas,<br>sin compromisos.</h1>
             <p>Descubre la app definitiva para controlar tu dinero, gestionar deudas y guardar tus tarjetas de fidelidad. Completamente offline, con máxima privacidad y una estética incomparable.</p>
             <div class="cta-group">
+                <button id="btnOpenBeta" class="btn-primary-large" style="background: var(--primary); color: white; border: none; box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; font-family: inherit; font-size: 1rem;">
+                    🚀 Apuntarme ya a la beta
+                </button>
                 <a href="#demo" class="btn-primary-large">Probar Demo Interfaz</a>
                 <a href="#features" class="btn-outline">Ver Características</a>
                 <a href="https://gofund.me/05df84e00" target="_blank" class="btn-donate">
@@ -872,6 +915,77 @@
                 hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
         });
+
+        // Lógica del Modal Beta
+        const btnOpenBeta = document.getElementById('btnOpenBeta');
+        const btnCloseBeta = document.getElementById('btnCloseBeta');
+        const betaModal = document.getElementById('betaModal');
+        const betaForm = document.getElementById('betaForm');
+        const betaSuccess = document.getElementById('betaSuccess');
+
+        if (btnOpenBeta) {
+            btnOpenBeta.addEventListener('click', (e) => {
+                e.preventDefault();
+                betaModal.classList.add('active');
+                betaForm.style.display = 'flex';
+                betaSuccess.style.display = 'none';
+                betaForm.reset();
+            });
+
+            btnCloseBeta.addEventListener('click', () => {
+                betaModal.classList.remove('active');
+            });
+
+            betaModal.addEventListener('click', (e) => {
+                if (e.target === betaModal) {
+                    betaModal.classList.remove('active');
+                }
+            });
+
+            betaForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('betaEmail').value;
+                const reason = document.getElementById('betaReason').value;
+                
+                const subject = encodeURIComponent('Solicitud acceso Beta Numera - ' + email);
+                const body = encodeURIComponent('Email de contacto: ' + email + '\n\nMotivo para unirse:\n' + reason);
+                
+                window.location.href = `mailto:numera-app@outlook.es?subject=${subject}&body=${body}`;
+                
+                betaForm.style.display = 'none';
+                betaSuccess.style.display = 'block';
+            });
+        }
     </script>
+
+    <!-- Modal Beta -->
+    <div class="modal-overlay" id="betaModal">
+        <div class="modal-content">
+            <button class="modal-close" id="btnCloseBeta">&times;</button>
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: white;">Únete a la Beta</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Sé de los primeros en probar Numera 2.0 y ayúdanos a mejorar.</p>
+            
+            <form id="betaForm" class="beta-form">
+                <div class="form-group">
+                    <label for="betaEmail">Correo electrónico *</label>
+                    <input type="email" id="betaEmail" class="form-control" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="betaReason">¿Por qué quieres unirte? *</label>
+                    <textarea id="betaReason" class="form-control" placeholder="Ej: Me encanta gestionar mis finanzas, vi el diseño y busco una app sin conexión para mi día a día..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar solicitud</button>
+            </form>
+            
+            <div id="betaSuccess" class="success-message">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                <h3>¡Solicitud en proceso!</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Se ha abierto tu aplicación de correo para enviar la solicitud a <strong>numera-app@outlook.es</strong>.</p>
+                <p style="color: white; font-weight: 600; padding: 1rem; background: rgba(16,185,129,0.1); border-radius: 12px; border: 1px solid rgba(16,185,129,0.2);">
+                    Te contactaremos al correo que nos has facilitado si eres seleccionado para la Beta. ¡Gracias por tu apoyo!
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
