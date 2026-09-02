@@ -843,7 +843,37 @@
         </div>
     </section>
 
-    <script>
+    <!-- Modal Beta -->
+    <div class="modal-overlay" id="betaModal">
+        <div class="modal-content">
+            <button class="modal-close" id="btnCloseBeta">&times;</button>
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: white;">Únete a la Beta</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Sé de los primeros en probar Numera 2.0 y ayúdanos a mejorar.</p>
+            
+            <form id="betaForm" class="beta-form">
+                <div class="form-group">
+                    <label for="betaEmail">Correo electrónico *</label>
+                    <input type="email" id="betaEmail" class="form-control" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="betaReason">¿Por qué quieres unirte? *</label>
+                    <textarea id="betaReason" class="form-control" placeholder="Ej: Me encanta gestionar mis finanzas, vi el diseño y busco una app sin conexión para mi día a día..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar solicitud</button>
+            </form>
+            
+            <div id="betaSuccess" class="success-message">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                <h3>¡Solicitud en proceso!</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Se ha abierto tu aplicación de correo para enviar la solicitud a <strong>numera-app@outlook.es</strong>.</p>
+                <p style="color: white; font-weight: 600; padding: 1rem; background: rgba(16,185,129,0.1); border-radius: 12px; border: 1px solid rgba(16,185,129,0.2);">
+                    Te contactaremos al correo que nos has facilitado si eres seleccionado para la Beta. ¡Gracias por tu apoyo!
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script>
         // Funciones interactivas (Demo)
         let balance = 1250;
         const balanceEl = document.getElementById('balanceValue');
@@ -957,35 +987,5 @@
             });
         }
     </script>
-
-    <!-- Modal Beta -->
-    <div class="modal-overlay" id="betaModal">
-        <div class="modal-content">
-            <button class="modal-close" id="btnCloseBeta">&times;</button>
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: white;">Únete a la Beta</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">Sé de los primeros en probar Numera 2.0 y ayúdanos a mejorar.</p>
-            
-            <form id="betaForm" class="beta-form">
-                <div class="form-group">
-                    <label for="betaEmail">Correo electrónico *</label>
-                    <input type="email" id="betaEmail" class="form-control" placeholder="tu@correo.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="betaReason">¿Por qué quieres unirte? *</label>
-                    <textarea id="betaReason" class="form-control" placeholder="Ej: Me encanta gestionar mis finanzas, vi el diseño y busco una app sin conexión para mi día a día..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Enviar solicitud</button>
-            </form>
-            
-            <div id="betaSuccess" class="success-message">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                <h3>¡Solicitud en proceso!</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Se ha abierto tu aplicación de correo para enviar la solicitud a <strong>numera-app@outlook.es</strong>.</p>
-                <p style="color: white; font-weight: 600; padding: 1rem; background: rgba(16,185,129,0.1); border-radius: 12px; border: 1px solid rgba(16,185,129,0.2);">
-                    Te contactaremos al correo que nos has facilitado si eres seleccionado para la Beta. ¡Gracias por tu apoyo!
-                </p>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
