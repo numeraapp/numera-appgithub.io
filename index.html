@@ -733,6 +733,12 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-color: rgba(255, 255, 255, 0.2);
         }
+        
+        .btn-gplay:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.2);
+            background: #111 !important;
+        }
         /* --------------------------------- */
 
     
@@ -799,6 +805,12 @@
             letter-spacing: -2px;
             line-height: 1.1;
         }
+        
+        .btn-gplay:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.2);
+            background: #111 !important;
+        }
         /* --------------------------------- */
 
     </style>
@@ -838,6 +850,14 @@
             <h1>Tus finanzas,<br>sin compromisos.</h1>
             <p>Descubre la app definitiva para controlar tu dinero, gestionar deudas y guardar tus tarjetas de fidelidad. Completamente offline, con máxima privacidad y una estética incomparable.</p>
             <div class="cta-group">
+
+                <a href="#" onclick="event.preventDefault();" class="btn-gplay" style="background: black; color: white; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0.8rem 1.5rem; border-radius: 100px; text-decoration: none; transition: all 0.3s ease; cursor: default;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" width="26" height="26" alt="Google Play">
+                    <div style="text-align: left; line-height: 1.1;">
+                        <div style="font-size: 0.7rem; font-weight: 500; opacity: 0.8; letter-spacing: 0.5px;">PRONTO EN</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; font-family: sans-serif; letter-spacing: -0.5px;">Google Play</div>
+                    </div>
+                </a>
                 <button id="btnOpenBeta" class="btn-primary-large" style="background: var(--primary); color: white; border: none; box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; font-family: inherit; font-size: 1rem;">
                     🚀 Apuntarme ya a la beta
                 </button>
@@ -944,7 +964,6 @@
             </div>
         </div>
     </section>
-
     <!-- Modal Beta -->
     <div class="modal-overlay" id="betaModal">
         <div class="modal-content">
