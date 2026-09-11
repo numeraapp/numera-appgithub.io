@@ -43,9 +43,23 @@
         .contact-box { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 2rem; border: 1px solid var(--border-glass); }
 
         @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .privacy-container { padding: 2rem 1.5rem; border-radius: 32px; } }
-    </style>
+    
+        .cursor-glow {
+            position: fixed;
+            width: 220px;
+            height: 220px;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+            filter: blur(1px);
+        }
+</style>
 </head>
 <body>
+    <div class="cursor-glow" id="cursorGlow"></div>
     <nav class="navbar">
         <a href="index.html" class="nav-brand">Numera</a>
         <div class="nav-links">
@@ -117,6 +131,15 @@
                 hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
         });
-    </script>
+    
+        // Efecto del ratón para el fondo
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.getElementById('cursorGlow');
+            if (glow) {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            }
+        });
+</script>
 </body>
 </html>
