@@ -705,10 +705,22 @@
         /* --- Premium Apple-like Styles --- */
         
 
+        .btn-tiktok {
+            background: #111 !important;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
+        }
         .btn-tiktok:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-            background: #111 !important;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8) !important;
+            color: white;
+        }
+        .btn-youtube {
+            background: #FF0000 !important;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2) !important;
+        }
+        .btn-youtube:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4) !important;
         }
 
         .btn-donate:hover {
@@ -790,7 +802,10 @@
         .btn-tiktok:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 30px rgba(255,255,255,0.15);
-            background: #151515 !important;
+        }
+        .btn-youtube:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255,0,0,0.3);
         }
         .btn-donate:hover {
             transform: translateY(-3px) scale(1.02);
@@ -851,29 +866,25 @@
             <div class="badge">✨ Nueva versión 2.0 disponible</div>
             <h1>Tus finanzas,<br>sin compromisos.</h1>
             <p>Descubre la app definitiva para controlar tu dinero, gestionar deudas y guardar tus tarjetas de fidelidad. Completamente offline, con máxima privacidad y una estética incomparable.</p>
-            <div class="cta-group">
+            <div class="cta-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; width: 100%; max-width: 500px; justify-content: center; align-items: stretch;">
 
-                <a href="#" onclick="event.preventDefault();" class="btn-gplay" style="background: black; color: white; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0.8rem 1.5rem; border-radius: 100px; text-decoration: none; transition: all 0.3s ease; cursor: default;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" width="26" height="26" alt="Google Play">
-                    <div style="text-align: left; line-height: 1.1;">
-                        <div style="font-size: 0.7rem; font-weight: 500; opacity: 0.8; letter-spacing: 0.5px;">PRONTO EN</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; font-family: sans-serif; letter-spacing: -0.5px;">Google Play</div>
-                    </div>
+                <a href="https://1drv.ms/u/c/1ca3af9ba2cf0420/IQCc9okiOJ6VTaY4u9x9QBvEASMWjIM6Zc1WUgMD3ilO-O0" class="btn-primary-large" style="background: var(--primary); color: white; border: none; box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; font-family: inherit; font-size: 1rem; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; text-decoration: none; padding: 1rem;">
+                    🚀 ¡¡Descárgala ya!!
                 </a>
-                <button id="btnOpenBeta" class="btn-primary-large" style="background: var(--primary); color: white; border: none; box-shadow: 0 0 20px var(--primary-glow); cursor: pointer; font-family: inherit; font-size: 1rem;">
-                    🚀 Apuntarme ya a la beta
-                </button>
-                <a href="https://gofund.me/05df84e00" target="_blank" class="btn-donate">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                
+                <a href="https://gofund.me/05df84e00" target="_blank" class="btn-donate" style="width: 100%; height: 100%; justify-content: center; display: flex; align-items: center; padding: 1rem;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="heart-icon" style="margin-right: 8px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     Apoyar Proyecto
                 </a>
-
-                <a href="https://www.tiktok.com/@numera_app_oficial_" target="_blank" class="btn-tiktok" style="background: black; color: white; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; margin-bottom: 10px;">
-                    Sígueme en TikTok
+                
+                <a href="https://www.tiktok.com/@numera_app_oficial_" target="_blank" class="btn-donate btn-tiktok" style="width: 100%; height: 100%; justify-content: center; display: flex; align-items: center; padding: 1rem;">
+                    📱 Sígueme en TikTok
                 </a>
-                <a href="https://www.youtube.com/channel/UCcbM_ujjEHHPl_j-wMt937Q" target="_blank" class="btn-youtube" style="background: #FF0000; color: white; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                    Canal de YouTube
+                
+                <a href="https://www.youtube.com/channel/UCcbM_ujjEHHPl_j-wMt937Q" target="_blank" class="btn-donate btn-youtube" style="width: 100%; height: 100%; justify-content: center; display: flex; align-items: center; padding: 1rem;">
+                    ▶️ Canal de YouTube
                 </a>
+                
             </div>
         </div>
 
@@ -1266,21 +1277,12 @@
         });
 
         // Lógica del Modal Beta
-        const btnOpenBeta = document.getElementById('btnOpenBeta');
         const btnCloseBeta = document.getElementById('btnCloseBeta');
         const betaModal = document.getElementById('betaModal');
         const betaForm = document.getElementById('betaForm');
         const betaSuccess = document.getElementById('betaSuccess');
 
-        if (btnOpenBeta) {
-            btnOpenBeta.addEventListener('click', (e) => {
-                e.preventDefault();
-                betaModal.classList.add('active');
-                betaForm.style.display = 'flex';
-                betaSuccess.style.display = 'none';
-                betaForm.reset();
-            });
-
+        if (btnCloseBeta) {
             btnCloseBeta.addEventListener('click', () => {
                 betaModal.classList.remove('active');
             });
