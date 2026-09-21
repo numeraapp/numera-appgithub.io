@@ -52,6 +52,7 @@
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-glass);
             z-index: 1000;
+            animation: navEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
         }
 
         .nav-brand {
@@ -60,6 +61,7 @@
             color: white;
             text-decoration: none;
             letter-spacing: -0.5px;
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards;
         }
 
         .nav-links {
@@ -75,6 +77,14 @@
             transition: color 0.3s ease;
         }
 
+        .nav-links .nav-link:nth-child(1) {
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+        }
+
+        .nav-links .nav-link:nth-child(2) {
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards;
+        }
+
         .nav-link:hover {
             color: white;
         }
@@ -83,6 +93,7 @@
         .hamburger {
             display: none;
             background: none;
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
             border: none;
             color: white;
             cursor: pointer;
@@ -184,7 +195,6 @@
 
         .hero-content {
             flex: 1;
-            animation: fadeUp 1s ease-out forwards;
         }
 
         .brand-hero {
@@ -198,6 +208,7 @@
             -webkit-text-fill-color: transparent;
             display: inline-block;
             word-break: break-word;
+            animation: heroBrandEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
         }
 
         .badge {
@@ -212,6 +223,7 @@
             margin-bottom: 1.5rem;
             letter-spacing: 0.5px;
             box-shadow: 0 0 10px rgba(134, 82, 255, 0.2);
+            animation: heroBadgeEntrance 0.8s cubic-bezier(0.34, 1.5, 0.64, 1) 0.12s backwards;
         }
 
         .hero h1 {
@@ -223,6 +235,7 @@
             background: linear-gradient(to right, #ffffff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: heroTextEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.34s backwards;
         }
 
         .hero p {
@@ -231,12 +244,26 @@
             margin-bottom: 2.5rem;
             max-width: 500px;
             font-weight: 400;
+            animation: heroTextEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.46s backwards;
         }
 
         .cta-group {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        .cta-group > *:nth-child(1) {
+            animation: heroBtnEntrance 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.58s backwards;
+        }
+        .cta-group > *:nth-child(2) {
+            animation: heroBtnEntrance 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.68s backwards;
+        }
+        .cta-group > *:nth-child(3) {
+            animation: heroBtnEntrance 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.78s backwards;
+        }
+        .cta-group > *:nth-child(4) {
+            animation: heroBtnEntrance 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.88s backwards;
         }
 
         .btn-outline {
@@ -304,15 +331,13 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            perspective: 1000px;
-            animation: fadeUp 1s ease-out 0.2s forwards;
-            opacity: 0;
+            perspective: 1200px;
+            animation: phoneEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
         }
 
         .device-wrapper {
             position: relative;
             transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
         }
 
         .device-glow {
@@ -367,6 +392,10 @@
             overflow-y: auto;
         }
 
+        .demo-header {
+            animation: fadeUpItem 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.72s backwards;
+        }
+
         .demo-header h2 {
             font-size: 1.2rem;
             color: white;
@@ -384,6 +413,7 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: popInCard 0.75s cubic-bezier(0.34, 1.35, 0.64, 1) 0.84s backwards;
         }
 
         .demo-balance-card::before {
@@ -419,6 +449,14 @@
         .demo-actions {
             display: flex;
             gap: 0.75rem;
+        }
+
+        .demo-actions .demo-btn:nth-child(1) {
+            animation: popInCard 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) 0.98s backwards;
+        }
+
+        .demo-actions .demo-btn:nth-child(2) {
+            animation: popInCard 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) 1.08s backwards;
         }
 
         .demo-btn {
@@ -460,6 +498,15 @@
             flex: 1;
             overflow-y: auto;
             min-height: 150px;
+            animation: fadeUpItem 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.18s backwards;
+        }
+
+        #txList > .transaction-item:nth-child(1) {
+            animation: slideInTx 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.3s backwards;
+        }
+
+        #txList > .transaction-item:nth-child(2) {
+            animation: slideInTx 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.42s backwards;
         }
 
         .demo-transactions::-webkit-scrollbar {
@@ -617,6 +664,146 @@
             }
         }
 
+        /* ====== ANIMACIONES DE ENTRADA AL CARGAR LA PÁGINA ====== */
+        @keyframes navEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroBadgeEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.86);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heroBrandEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+                filter: blur(8px);
+                letter-spacing: 2px;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+                letter-spacing: -2px;
+            }
+        }
+
+        @keyframes heroTextEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(26px);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroBtnEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(22px) scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes phoneEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(65px) scale(0.88);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes popInCard {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeUpItem {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInTx {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ====== ANIMACIONES DE DESPLAZAMIENTO / SCROLL REVEAL ====== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            filter: blur(4px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--delay, 0s);
+            will-change: opacity, transform, filter;
+        }
+
+        .scroll-reveal.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .scroll-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+        }
+
         /* ====== MEDIA QUERIES PARA ADAPTACIÓN TOTAL ====== */
         @media (max-width: 1200px) {
             .hero { gap: 2rem; }
@@ -760,6 +947,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: phoneEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
         }
         .device-wrapper {
             transform-style: preserve-3d;
@@ -819,6 +1007,7 @@
             text-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
             letter-spacing: -2px;
             line-height: 1.1;
+            animation: heroTextEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.34s backwards;
         }
         
         .btn-gplay:hover {
@@ -949,7 +1138,7 @@
         </div>
     </section>
 
-    <section class="community-section" id="comunidad" style="padding: 6rem 2rem; background: linear-gradient(to bottom, var(--bg-dark), rgba(88, 101, 242, 0.05)); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;">
+    <section class="community-section scroll-reveal" id="comunidad" style="padding: 6rem 2rem; background: linear-gradient(to bottom, var(--bg-dark), rgba(88, 101, 242, 0.05)); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;">
         <!-- Elementos de fondo decorativos -->
         <div style="position: absolute; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(88,101,242,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; pointer-events: none;"></div>
         <div style="position: absolute; bottom: -150px; right: -50px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(88,101,242,0.05) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; pointer-events: none;"></div>
@@ -999,33 +1188,33 @@
     </section>
 
     <section class="features-section" id="features">
-        <h2 class="section-title">Diseñada para ti</h2>
+        <h2 class="section-title scroll-reveal">Diseñada para ti</h2>
         <div class="bento-grid">
-            <div class="bento-card bento-large">
+            <div class="bento-card bento-large scroll-reveal" style="--delay: 0.05s;">
                 <div class="feature-icon">🔒</div>
                 <h3>Privacidad Absoluta</h3>
                 <p>Numera funciona 100% offline. Tus datos se guardan exclusivamente en el almacenamiento local de tu dispositivo. Sin cuentas, sin rastreadores, sin servidores de terceros. Puedes exportar una copia de seguridad JSON cuando quieras.</p>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card scroll-reveal" style="--delay: 0.15s;">
                 <div class="feature-icon">📱</div>
                 <h3>Tarjetas de Fidelidad</h3>
                 <p>Olvida el plástico. Escanea o sube imágenes de los códigos QR de tus supermercados, asígnales un color y tenlos siempre a mano listos para pasar por caja.</p>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card scroll-reveal" style="--delay: 0.25s;">
                 <div class="feature-icon">🎯</div>
                 <h3>Metas de Ahorro</h3>
                 <p>Define objetivos claros y visualiza tu progreso con barras gráficas. Mantén la motivación intacta ahorrando para ese viaje o capricho que tanto deseas.</p>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card scroll-reveal" style="--delay: 0.35s;">
                 <div class="feature-icon">🤝</div>
                 <h3>Control de Deudas</h3>
                 <p>¿Le prestaste dinero a un amigo? Registra fácilmente quién te debe dinero y a quién le debes para mantener las cuentas claras sin romper amistades.</p>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card scroll-reveal" style="--delay: 0.45s;">
                 <div class="feature-icon">⏱️</div>
                 <h3>Modo Productividad</h3>
                 <p>Utiliza nuestro temporizador integrado para tus sesiones de estudio o trabajo. Gestiona tu dinero y tu tiempo desde un solo lugar de forma privada.</p>
@@ -1034,11 +1223,11 @@
     </section>
 
     <section class="faq-section" id="faq" style="padding: 6rem 1.5rem; max-width: 800px; margin: 0 auto;">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
+        <h2 class="section-title scroll-reveal" style="text-align: center; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <!-- FAQ Items -->
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.05s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Numera es gratuita?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1046,7 +1235,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Sí, Numera es 100% gratuita y sin ningún tipo de anuncio.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.1s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Necesito internet para usar la app?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1054,7 +1243,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">No, Numera funciona totalmente offline para garantizar tu privacidad.</p>
             </details>
             
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.15s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Dónde se guardan mis datos?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1062,7 +1251,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Se guardan de forma local y segura en tu propio dispositivo.</p>
             </details>
             
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.2s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Puedo recuperar mis datos si cambio de móvil?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1070,7 +1259,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Sí, puedes conectar Google Drive para hacer copias de seguridad en la nube, o exportar un archivo JSON desde Ajustes.</p>
             </details>
             
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.25s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Cómo funciona el Divisor de Cuentas?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1078,7 +1267,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Ve a Herramientas, introduce el importe total, añade a los participantes y la app calculará al instante cuánto debe cada uno.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.3s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Qué es el Pomodoro de Ahorro?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1086,7 +1275,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Es una técnica de concentración (25 min de trabajo, 5 de descanso) pensada para evitar distracciones y compras impulsivas mientras trabajas o estudias.</p>
             </details>
             
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.35s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Cómo añado una tarjeta de fidelidad?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1094,7 +1283,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">En la sección Herramientas > Tarjetas, añade el nombre del comercio y escanea o escribe el número del código de barras.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.4s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Puedo editar o borrar un gasto?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1102,7 +1291,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Sí, desliza el gasto hacia la izquierda en el historial para eliminarlo.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.45s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Cómo funcionan las metas de ahorro?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1110,7 +1299,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Define un objetivo (ej. 'Viaje a Japón'), añade el importe total y registra cuánto dinero vas guardando poco a poco.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.5s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Numera tiene acceso a mi banco?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1118,7 +1307,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">No. Por motivos de privacidad y seguridad, Numera no se conecta a ningún banco. Todo el registro es manual.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.55s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Para qué sirve el Servidor de Discord?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1126,7 +1315,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Es nuestra comunidad oficial para votar futuras funciones, pedir ayuda, y hablar con otros ahorradores.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.6s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Qué significa el balance en rojo?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1134,7 +1323,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Significa que tus gastos registrados han superado a tus ingresos en el mes actual.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.65s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Cómo exporto mis datos a Excel?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1142,7 +1331,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">En los Ajustes tienes la opción de Exportar Datos, que te genera un archivo compatible.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.7s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Se puede usar en varios dispositivos a la vez?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1150,7 +1339,7 @@
                 <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.6;">Como tus datos son privados y offline, actualmente no hay sincronización en tiempo real entre múltiples dispositivos.</p>
             </details>
 
-            <details style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
+            <details class="scroll-reveal" style="--delay: 0.75s; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; padding: 1.2rem; cursor: pointer;">
                 <summary style="font-weight: 600; font-size: 1.1rem; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                     ¿Cómo reporto un error o sugiero una idea?
                     <span style="color: var(--primary); font-size: 1.5rem; line-height: 1;">+</span>
@@ -1159,7 +1348,7 @@
             </details>
         </div>
 
-        <div style="margin-top: 4rem; padding: 2.5rem 2rem; background: rgba(88,101,242,0.1); border: 1px solid rgba(88,101,242,0.3); border-radius: 24px; text-align: center;">
+        <div class="scroll-reveal" style="--delay: 0.2s; margin-top: 4rem; padding: 2.5rem 2rem; background: rgba(88,101,242,0.1); border: 1px solid rgba(88,101,242,0.3); border-radius: 24px; text-align: center;">
             <h3 style="font-size: 1.4rem; color: white; margin-bottom: 0.5rem;">¿Tu duda no está aquí o no se ha resuelto?</h3>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem;">Únete a nuestro servidor de Discord oficial para recibir ayuda rápida y personalizada.</p>
             <a href="https://discord.gg/Mnr6tu9Xrf" target="_blank" style="display: inline-block; background: #5865F2; color: white; text-decoration: none; padding: 0.8rem 2rem; border-radius: 100px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(88,101,242,0.4);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(88,101,242,0.6)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(88,101,242,0.4)';">
@@ -1309,6 +1498,27 @@
                 betaForm.style.display = 'none';
                 betaSuccess.style.display = 'block';
             });
+        }
+
+        // ====== ANIMACIONES AL HACER SCROLL (SCROLL REVEAL) ======
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            };
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('is-revealed'));
         }
     </script>
 </body>
