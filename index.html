@@ -78,15 +78,23 @@
         }
 
         .nav-links .nav-link:nth-child(1) {
-            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
         }
 
         .nav-links .nav-link:nth-child(2) {
+            animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+        }
+
+        .nav-links .nav-link:nth-child(3) {
             animation: heroTextEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: white;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid var(--primary);
         }
 
         /* BOTÓN HAMBURGUESA */
@@ -501,11 +509,11 @@
             animation: fadeUpItem 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.18s backwards;
         }
 
-        #txList > .transaction-item:nth-child(1) {
+        #txList > .init-tx-1 {
             animation: slideInTx 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.3s backwards;
         }
 
-        #txList > .transaction-item:nth-child(2) {
+        #txList > .init-tx-2 {
             animation: slideInTx 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.42s backwards;
         }
 
@@ -519,7 +527,21 @@
             align-items: center;
             padding: 0.75rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            animation: slideInRight 0.4s ease-out;
+        }
+
+        .transaction-item.new-tx {
+            animation: slideInTxNew 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideInTxNew {
+            0% {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .transaction-item:last-child {
@@ -1027,6 +1049,7 @@
     <nav class="navbar">
         <a href="index.html" class="nav-brand">Numera</a>
         <div class="nav-links">
+            <a href="index.html" class="nav-link active">Inicio</a>
             <a href="privacidad.html" class="nav-link">Política de Privacidad</a>
             <a href="terminos.html" class="nav-link">Términos de Servicio</a>
         </div>
@@ -1040,6 +1063,7 @@
 
     <!-- MENÚ MÓVIL (OCULTO POR DEFECTO) -->
     <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-link">Inicio</a>
         <a href="privacidad.html" class="mobile-link">Política de Privacidad</a>
         <a href="terminos.html" class="mobile-link">Términos de Servicio</a>
     </div>
@@ -1110,7 +1134,7 @@
                         <div class="demo-transactions">
                             <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;">Movimientos recientes</h3>
                             <div id="txList">
-                                <div class="transaction-item">
+                                <div class="transaction-item init-tx-1">
                                     <div style="display: flex; align-items: center;">
                                         <div class="tx-icon">💸</div>
                                         <div>
@@ -1120,7 +1144,7 @@
                                     </div>
                                     <div style="color: var(--accent-green); font-weight: 700;">+ € 1,300.00</div>
                                 </div>
-                                <div class="transaction-item">
+                                <div class="transaction-item init-tx-2">
                                     <div style="display: flex; align-items: center;">
                                         <div class="tx-icon">🛒</div>
                                         <div>
@@ -1401,14 +1425,36 @@
         const balanceEl = document.getElementById('balanceValue');
         const txList = document.getElementById('txList');
 
+        const sampleExpenses = [
+            { title: 'Café matutino', icon: '☕', amount: 1.50 },
+            { title: 'Panadería', icon: '🥖', amount: 1.25 },
+            { title: 'Supermercado', icon: '🛒', amount: 24.50 },
+            { title: 'Gasolina', icon: '⛽', amount: 35.00 },
+            { title: 'Cena con amigos', icon: '🍕', amount: 18.20 },
+            { title: 'Farmacia', icon: '💊', amount: 8.90 }
+        ];
+
+        const sampleIncomes = [
+            { title: 'Bizum recibido', icon: '📱', amount: 25.00 },
+            { title: 'Ingreso extra', icon: '💰', amount: 120.00 },
+            { title: 'Venta de artículo', icon: '📦', amount: 35.00 },
+            { title: 'Nómina parcial', icon: '💸', amount: 300.00 }
+        ];
+
+        let expenseIndex = 0;
+        let incomeIndex = 0;
+
         function formatMoney(amount) {
             return '€ ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
         function addTransaction(type) {
-            const amount = type === 'income' ? Math.floor(Math.random() * 500) + 50 : Math.floor(Math.random() * 100) + 10;
             const isIncome = type === 'income';
-            
+            const sample = isIncome 
+                ? sampleIncomes[incomeIndex++ % sampleIncomes.length]
+                : sampleExpenses[expenseIndex++ % sampleExpenses.length];
+
+            const amount = sample.amount;
             balance += isIncome ? amount : -amount;
             balanceEl.textContent = formatMoney(balance);
             
@@ -1417,23 +1463,28 @@
             card.style.transform = 'scale(0.98)';
             setTimeout(() => card.style.transform = '', 150);
 
-            // Añadir a la lista
-            const txHTML = `
-                <div class="transaction-item">
-                    <div style="display: flex; align-items: center;">
-                        <div class="tx-icon">${isIncome ? '💰' : '☕'}</div>
-                        <div>
-                            <div style="font-weight: 600; color: white;">${isIncome ? 'Ingreso extra' : 'Gasto rápido'}</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">Ahora mismo</div>
-                        </div>
-                    </div>
-                    <div style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight: 700;">
-                        ${isIncome ? '+' : '-'} € ${amount.toFixed(2)}
+            // Crear y añadir nuevo elemento arriba ordenadamente
+            const txEl = document.createElement('div');
+            txEl.className = 'transaction-item new-tx';
+            txEl.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <div class="tx-icon">${sample.icon}</div>
+                    <div>
+                        <div style="font-weight: 600; color: white;">${sample.title}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Ahora mismo</div>
                     </div>
                 </div>
+                <div style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight: 700;">
+                    ${isIncome ? '+' : '-'} € ${amount.toFixed(2)}
+                </div>
             `;
-            txList.insertAdjacentHTML('afterbegin', txHTML);
-            if(txList.children.length > 4) txList.lastElementChild.remove();
+
+            txList.insertBefore(txEl, txList.firstChild);
+            
+            // Mantener máximo 4 movimientos en la lista ordenada
+            while (txList.children.length > 4) {
+                txList.lastElementChild.remove();
+            }
         }
 
         // Efecto del ratón para el fondo y las tarjetas Bento
