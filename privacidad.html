@@ -6,44 +6,330 @@
     <title>Política de Privacidad · Numera</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* Variables y diseño global */
-        :root { --bg-base: #05050a; --bg-surface: rgba(255, 255, 255, 0.03); --primary: #8652FF; --primary-glow: rgba(134, 82, 255, 0.4); --text-main: #ffffff; --text-muted: #9ca3af; --border-glass: rgba(255, 255, 255, 0.1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="white" fill-opacity="0.95" stroke="white" stroke-width="1.5" stroke-opacity="0.35"/></svg>') 12 12, auto !important; }
-        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        :root {
+            --bg-base: #05050a;
+            --bg-surface: rgba(255, 255, 255, 0.03);
+            --primary: #8652FF;
+            --primary-glow: rgba(134, 82, 255, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
 
-        /* Navbar */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; background: rgba(5, 5, 10, 0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); z-index: 1000; }
-        .nav-brand { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: white; }
-        .nav-link.active { border-bottom: 2px solid var(--primary); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="white" fill-opacity="0.95" stroke="white" stroke-width="1.5" stroke-opacity="0.35"/></svg>') 12 12, auto !important;
+        }
 
-        /* Hamburguesa */
-        .hamburger { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; z-index: 1001; }
-        .hamburger svg { width: 32px; height: 32px; fill: currentColor; }
-        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5, 5, 10, 0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; z-index: 999; transform: translateY(-100%); transition: transform 0.4s ease; }
-        .mobile-menu.open { transform: translateY(0); }
-        .mobile-link { color: var(--text-muted); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
-        .mobile-link:hover { color: white; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* Glows */
-        .ambient-glow { position: fixed; top: -20%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); filter: blur(100px); z-index: -1; }
-        
-        /* Contenido Legal */
-        .privacy-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 5% 4rem; }
-        .privacy-container { max-width: 900px; width: 100%; background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 48px; padding: 3.5rem 4rem; backdrop-filter: blur(12px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8); }
-        .privacy-container h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; background: linear-gradient(to right, #ffffff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .update-date { display: inline-block; margin-top: 0.25rem; font-size: 0.95rem; color: var(--text-muted); border-bottom: 1px solid var(--border-glass); padding-bottom: 1.5rem; margin-bottom: 2rem; width: 100%; }
-        .privacy-container h2 { font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; color: white; }
-        .privacy-container p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.7; }
-        .privacy-container strong { color: white; font-weight: 600; }
-        .highlight-box { background: rgba(134, 82, 255, 0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 16px; margin: 2rem 0; }
-        .highlight-box p { margin-bottom: 0; color: var(--text-main); }
-        .contact-box { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; margin-top: 2rem; border: 1px solid var(--border-glass); }
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background: rgba(5, 5, 10, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+        }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } .privacy-container { padding: 2rem 1.5rem; border-radius: 32px; } }
-    
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: white;
+            border-bottom: 2px solid var(--primary);
+            background: rgba(134, 82, 255, 0.1);
+        }
+
+        /* BOTÓN HAMBURGUESA */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        /* MENÚ MÓVIL */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(5, 5, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateY(0);
+        }
+
+        .mobile-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.35rem;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-link:hover, .mobile-link.active {
+            color: white;
+            background: rgba(134, 82, 255, 0.15);
+        }
+
+        /* GLOWS */
+        .ambient-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* CONTENIDO PRIVACIDAD */
+        .privacy-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 7.5rem 5% 4rem;
+        }
+
+        .privacy-container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 40px;
+            padding: 3.5rem 4rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        .doc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(134, 82, 255, 0.15);
+            border: 1px solid var(--primary);
+            color: #c4b5fd;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .privacy-container h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-date {
+            display: inline-block;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .privacy-container h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-container p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.4rem;
+            line-height: 1.7;
+        }
+
+        .privacy-container strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .privacy-container ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .privacy-container li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .privacy-container li::before {
+            content: "•";
+            position: absolute;
+            left: 0.5rem;
+            color: var(--primary);
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .highlight-box {
+            background: rgba(134, 82, 255, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin: 1.75rem 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-main);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1.75rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            border: 1px solid var(--border-glass);
+        }
+
+        /* FOOTER */
+        .site-footer {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .privacy-container { padding: 2rem 1.5rem; border-radius: 28px; }
+            .site-footer { flex-direction: column; text-align: center; justify-content: center; }
+            .footer-links { justify-content: center; }
+        }
+
         .cursor-glow {
             position: fixed;
             width: 220px;
@@ -56,79 +342,168 @@
             transition: opacity 0.3s ease;
             filter: blur(1px);
         }
-</style>
+    </style>
 </head>
 <body>
     <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">Numera</a>
+        <a href="index.html" class="nav-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Numera
+        </a>
         <div class="nav-links">
-            <a href="index.html" class="nav-link">Inicio</a>
-            <a href="privacidad.html" class="nav-link active">Política de Privacidad</a>
-            <a href="terminos.html" class="nav-link">Términos de Servicio</a>
+            <a href="index.html" class="nav-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Inicio
+            </a>
+            <a href="privacidad.html" class="nav-link active">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                Política de Privacidad
+            </a>
+            <a href="terminos.html" class="nav-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                Términos de Servicio
+            </a>
         </div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú"><svg id="hamburgerIcon" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg></button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+            <svg id="hamburgerIcon" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
     </nav>
 
+    <!-- MENÚ MÓVIL -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html" class="mobile-link">Inicio</a>
-        <a href="privacidad.html" class="mobile-link">Política de Privacidad</a>
-        <a href="terminos.html" class="mobile-link">Términos de Servicio</a>
+        <a href="index.html" class="mobile-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Inicio
+        </a>
+        <a href="privacidad.html" class="mobile-link active">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            Política de Privacidad
+        </a>
+        <a href="terminos.html" class="mobile-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Términos de Servicio
+        </a>
     </div>
 
     <div class="ambient-glow"></div>
 
     <section class="privacy-section">
         <div class="privacy-container">
+            <div class="doc-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                Documento Legal Oficial · Privacidad y Protección de Datos
+            </div>
             <h1>Política de Privacidad de Numera</h1>
-            <div class="update-date">Última actualización: Octubre de 2026</div>
+            <div class="update-date">Última actualización y revisión legal: Octubre de 2026</div>
 
-            <p>El desarrollador de <strong>Numera</strong> ("la Aplicación") ha concebido y construido esta herramienta bajo el principio rector de <strong>"Privacidad por Diseño y por Defecto"</strong>. Esta Política de Privacidad describe de manera transparente el tratamiento de la información al utilizar Numera y garantiza el estricto cumplimiento del <strong>Reglamento General de Protección de Datos (RGPD / GDPR - UE 2016/679)</strong>, la <strong>Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD - España)</strong>, la <strong>California Consumer Privacy Act (CCPA / CPRA - EE.UU.)</strong>, la <strong>Ley General de Protección de Datos (LGPD - Brasil)</strong> y los marcos regulatorios internacionales de privacidad y protección del consumidor.</p>
+            <p>El desarrollador de <strong>Numera</strong> ("la Aplicación") ha concebido y construido esta herramienta bajo el principio de <strong>"Privacidad por Diseño y por Defecto"</strong>. La presente Política describe con absoluta transparencia cómo se gestiona la información y garantiza el estricto cumplimiento del <strong>Reglamento General de Protección de Datos (RGPD / GDPR - UE 2016/679)</strong>, la <strong>Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD - España)</strong>, la <strong>California Consumer Privacy Act (CCPA / CPRA - EE.UU.)</strong> y la normativa internacional aplicable.</p>
 
-            <h2>1. Datos que recopilamos (Arquitectura 100% Offline)</h2>
-            <p><strong>Numera es una aplicación de almacenamiento puramente local.</strong> Todos los datos financieros, transacciones, presupuestos, notas, tarjetas de fidelidad, alarmas y metas que introduces en la aplicación se guardan y procesan de forma exclusiva en la memoria interna de tu dispositivo móvil.</p>
-            <p><strong>No disponemos de servidores centrales ni bases de datos remotas.</strong> Por lo tanto, no recopilamos, interceptamos, almacenamos, comercializamos ni compartimos tu información personal o financiera con terceros, entidades bancarias ni redes publicitarias. En cumplimiento estricto con la CCPA: <strong>Numera NO vende ni transfiere ningún dato personal bajo ninguna circunstancia.</strong></p>
-
-            <h2>2. Permisos del Dispositivo y Uso de la Cámara</h2>
-            <p>Para su correcto funcionamiento, Numera únicamente solicita los permisos técnicos imprescindibles para sus características operativas:</p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                1. Almacenamiento Local por Defecto y Respaldo Opcional en Google Drive
+            </h2>
+            <p><strong>Por defecto, Numera es una aplicación de almacenamiento puramente local.</strong> Todos los datos que introduces en la aplicación (registros de ingresos, gastos, categorías, deudas con contactos, metas financieras, tarjetas de fidelidad escaneadas, notas personales, alarmas y preferencias de diseño) se almacenan de forma local en la base de datos interna de tu dispositivo móvil mediante SQLite / Room.</p>
             <div class="highlight-box">
-                <p>📷 <strong>Permiso de Cámara (Escaneo Óptico):</strong> Se utiliza única y exclusivamente en tiempo real dentro del propio dispositivo para el escaneo de códigos de barras y códigos QR de tus tarjetas de fidelidad mediante bibliotecas locales. <strong>Bajo ningún concepto se capturan, almacenan, graban ni transmiten imágenes o vídeos fuera de tu terminal.</strong></p>
-            </div>
-            <p><strong>- Permiso de Acceso a Red / Internet:</strong> Se emplea de manera estrictamente opcional y aislada si decides activar la sincronización con tu propia cuenta personal de Google Drive. La app no envía telemetría ni datos de fondo a otros servidores.</p>
-            <p><strong>- Permiso de Vibración / Alarmas:</strong> Se utiliza localmente por el sistema Android para activar el despertador, temporizador Pomodoro y recordatorios de la aplicación.</p>
-
-            <h2>3. Uso de Google Drive (Copias de Seguridad Opcionales)</h2>
-            <p>Si eliges vincular tu cuenta de Google Drive para respaldar tus datos, Numera solicitará acceso con el ámbito estricto y mínimo necesario (<code>drive.file</code>):</p>
-            <div class="highlight-box">
-                <p>🔒 <strong>Aislamiento de la Copia de Seguridad:</strong> La Aplicación <strong>únicamente puede acceder, crear y modificar el archivo específico de copia de seguridad generado por Numera</strong>. No tenemos visibilidad ni acceso a tus correos de Gmail, fotos de Google Fotos, archivos de Google Drive ni a ningún otro documento personal de tu cuenta.</p>
+                <p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary)" style="vertical-align: -4px; margin-right: 6px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/></svg>
+                    <strong>Aclaración sobre la transmisión de datos:</strong> Numera <strong>NO cuenta con servidores propios ni bases de datos remotas</strong> a donde se transmitan o almacenen tus registros financieros. La única transmisión de datos que puede ocurrir fuera de tu terminal es <strong>única y exclusivamente si tú decides activar voluntariamente la copia de seguridad en Google Drive</strong> desde los Ajustes de la Aplicación. Si dicha opción no es activada, ningún dato sale jamás de tu teléfono. En ningún caso Numera vende, perfila ni comparte tu información personal con entidades bancarias, corredurías ni redes publicitarias.
+                </p>
             </div>
 
-            <h2>4. Ausencia Total de Rastreo, Analíticas y Cookies</h2>
-            <p>Para garantizar una privacidad incondicional, Numera <strong>NO contiene herramientas de rastreo, cookies de seguimiento, Google Analytics, Firebase Crashlytics, identificadores publicitarios (AdID) ni ningún software de telemetría o perfilado de usuarios</strong>. Tu uso de la aplicación permanece completamente anónimo y confidencial.</p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+                2. Funcionamiento Real de las Copias de Seguridad en Google Drive
+            </h2>
+            <p>Para permitirte restaurar tus datos si cambias de dispositivo móvil, Numera ofrece una integración oficial y voluntaria con Google Drive a través de los Servicios de Google Play:</p>
+            <div class="info-card">
+                <ul>
+                    <li><strong>Ámbito mínimo y aislado (<code>https://www.googleapis.com/auth/drive.file</code>):</strong> Numera únicamente solicita permiso para crear, leer y actualizar el archivo de copia de seguridad específico generado por la propia aplicación (<code>numera_backup.json</code>).</li>
+                    <li><strong>Ausencia total de acceso al resto de tu cuenta:</strong> Numera <strong>no tiene acceso</strong> a tus carpetas personales de Google Drive, tus correos de Gmail, tus imágenes de Google Fotos ni ningún otro documento o archivo ajeno al respaldo de Numera.</li>
+                    <li><strong>Transmisión directa cliente-servidor:</strong> El archivo se transmite de forma cifrada (HTTPS/TLS) directamente desde tu teléfono móvil a los servidores de Google Drive en los que tú tienes tu cuenta. El archivo no pasa en ningún momento por servidores del desarrollador de Numera.</li>
+                    <li><strong>Control y eliminación inmediata:</strong> Puedes desconectar la cuenta de Google Drive en cualquier momento o pulsar "Eliminar copia de seguridad de Drive" en la app para borrar definitivamente el archivo de los servidores de Google.</li>
+                </ul>
+            </div>
 
-            <h2>5. Derechos de los Usuarios (RGPD, ARCO y CCPA)</h2>
-            <p>Conforme a la normativa internacional (derechos de Acceso, Rectificación, Cancelación, Oposición, Supresión y Portabilidad), tú posees el control total y directo sobre tus datos:</p>
-            <p>
-                <strong>- Eliminación completa e inmediata:</strong> Puedes destruir el 100% de tus datos locales en cualquier instante pulsando el botón "Borrar Todo" en los Ajustes de la App, y destruir el archivo en la nube pulsando "Eliminar copia de seguridad de Drive".<br>
-                <strong>- Portabilidad:</strong> Puedes exportar en cualquier momento todos tus datos en un archivo JSON legible y estándar desde el apartado de Ajustes.<br>
-                <strong>- Desinstalación:</strong> Al desinstalar la aplicación del sistema operativo, el almacenamiento local asignado a Numera se elimina de forma automática e irreversible.
-            </p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 15c1.66 0 2.99-1.34 2.99-3L15 6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 15 6.7 12H5c0 3.42 2.72 6.23 6 6.72V22h2v-3.28c3.28-.49 6-3.3 6-6.72h-1.7z"/></svg>
+                3. Permisos del Dispositivo y Finalidad Operativa
+            </h2>
+            <p>Numera solicita exclusivamente los permisos estrictamente imprescindibles para las herramientas que tú decides utilizar:</p>
+            <ul>
+                <li><strong>Permiso de Cámara (Escaneo Óptico):</strong> Utilizado de forma local en tiempo real para leer códigos de barras o códigos QR al registrar tus tarjetas de fidelidad. Las imágenes procesadas por la cámara jamás se guardan, no se graban ni se transmiten fuera de tu terminal.</li>
+                <li><strong>Permiso de Internet / Conexión de Red:</strong> Utilizado de forma aislada y puntual para conectar con la API de Google Drive si activas el respaldo en la nube, y para abrir enlaces externos que tú pulses deliberadamente (como la comunidad de Discord o la campaña voluntaria de GoFundMe).</li>
+                <li><strong>Permiso de Alarmas y Vibración:</strong> Utilizado localmente por el gestor de alarmas de Android para activar el despertador financiero, recordatorios y el temporizador Pomodoro de Ahorro.</li>
+            </ul>
 
-            <h2>6. Protección de Menores (Cumplimiento COPPA y RGPD)</h2>
-            <p>Numera no está dirigida a menores de 13 años (en cumplimiento con la Children's Online Privacy Protection Act - COPPA de EE.UU.) ni a menores de 14/16 años según la legislación de los estados miembros de la UE, sin el debido consentimiento o supervisión de sus padres o tutores legales. La aplicación no recopila información personal identificable de ningún usuario, independientemente de su edad.</p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                4. Ausencia de Rastreo, Analíticas y Venta de Datos
+            </h2>
+            <p>Para asegurar tu tranquilidad absoluta, Numera no incorpora kits de desarrollo de software (SDKs) de rastreo comercial, analítica invasiva ni telemetría:</p>
+            <ul>
+                <li>Sin Google Analytics ni Meta Pixel.</li>
+                <li>Sin identificadores publicitarios (Advertising ID / GAID).</li>
+                <li>Sin cookies de rastreo entre sitios web en nuestro portal informativo.</li>
+                <li>Sin software de registro de pulsaciones ni perfilado de hábitos de consumo.</li>
+            </ul>
 
-            <h2>7. Recompensas, Códigos y Comunidad de Discord</h2>
-            <p>Si canjeas un código de recompensa visual o de agradecimiento por donación voluntaria en nuestra comunidad de Discord, la validación se ejecuta de forma matemática y local en tu teléfono. <strong>No recopilamos ni vinculamos tu nombre de usuario, identificador ni mensajes de Discord a tus finanzas personales.</strong></p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                5. Aportaciones Voluntarias, GoFundMe y Códigos VIP
+            </h2>
+            <p>Si decides realizar una aportación dineraria para apoyar el proyecto mediante el enlace a <strong>GoFundMe</strong> disponible en la aplicación o el sitio web:</p>
+            <ul>
+                <li><strong>Procesamiento de pagos por terceros:</strong> La transacción económica y los datos de pago (tarjeta de crédito, cuenta bancaria, nombre de facturación) son tratados íntegramente por GoFundMe y sus pasarelas de pago autorizadas bajo sus propias políticas de privacidad. Numera <strong>no recopila, no recibe ni almacena tus datos bancarios ni números de tarjeta</strong>.</li>
+                <li><strong>Canje de códigos VIP:</strong> La validación y canje de códigos VIP (como el código para el tema dorado) se efectúa de forma puramente algorítmica y local en el dispositivo. No se crea ningún perfil remoto ni se vinculan tus aportaciones a tus finanzas locales.</li>
+            </ul>
 
-            <h2>8. Contacto e Identificación del Responsable</h2>
-            <p>Para cualquier consulta legal, duda técnica sobre el tratamiento de la información o para ejercer cualquier derecho adicional garantizado por las normativas de tu país, puedes contactar de forma directa con el desarrollador responsable del servicio:</p>
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                6. Derechos del Usuario (RGPD, LOPDGDD y CCPA)
+            </h2>
+            <p>Al no existir servidores que centralicen tus datos, tú ejerces de forma directa e inmediata tus derechos:</p>
+            <ul>
+                <li><strong>Derecho de Supresión ("Derecho al Olvido"):</strong> Puedes borrar el 100% de tus datos locales en cualquier instante pulsando "Borrar Todo" en los Ajustes de la App. Igualmente, puedes eliminar el respaldo en Drive con el botón correspondiente.</li>
+                <li><strong>Derecho a la Portabilidad:</strong> Puedes exportar todos tus datos en un archivo JSON estándar y legible en cualquier momento desde la opción "Exportar Datos".</li>
+                <li><strong>Desinstalación completa:</strong> Al desinstalar Numera de tu dispositivo Android, el sistema operativo elimina automáticamente la base de datos local asociada a la app.</li>
+            </ul>
+
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                7. Propiedad Intelectual y Licencias de Código Abierto
+            </h2>
+            <p>Numera integra respetuosamente componentes y bibliotecas de código abierto bajo sus correspondientes licencias de software libre:</p>
+            <ul>
+                <li><strong>Tipografías:</strong> La tipografía <em>Plus Jakarta Sans</em> utilizada en la web es obra de Tokotype y se distribuye bajo la licencia <strong>SIL Open Font License v1.1</strong>.</li>
+                <li><strong>Iconografía:</strong> Los iconos de la aplicación y la web pertenecen a la biblioteca <em>Material Symbols</em> de Google LLC bajo licencia <strong>Apache License 2.0</strong>.</li>
+                <li><strong>Bibliotecas de Software:</strong> Dependencias como Jetpack Compose, Room Database, Kotlin Coroutines, Retrofit y ZXing pertenecen a sus respectivos desarrolladores y están licenciadas bajo <strong>Apache License 2.0</strong> y <strong>MIT License</strong>.</li>
+            </ul>
+
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                8. Identificación del Responsable y Contacto
+            </h2>
             <div class="contact-box">
-                <p><strong>Responsable del Servicio:</strong> Desarrollador Independiente de Numera</p>
-                <p><strong>Naturaleza:</strong> Proyecto de software personal y no comercial.</p>
-                <p><strong>Correo Electrónico de Contacto Legal:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary);">numera-app@outlook.es</a></p>
-                <p><strong>Sede / Jurisdicción:</strong> España (Unión Europea)</p>
-                <p style="margin-top: 0.75rem; font-size: 0.95rem; color: var(--text-muted);"><em>Para consultas o notificaciones, puede contactar al responsable de Numera en <a href="mailto:numera-app@outlook.es" style="color: var(--primary);">numera-app@outlook.es</a>. No se garantiza una respuesta inmediata, dado el carácter no comercial del proyecto.</em></p>
+                <p><strong>Responsable del Proyecto:</strong> Desarrollador Independiente de Numera</p>
+                <p><strong>Naturaleza:</strong> Proyecto de software de finanzas personales.</p>
+                <p><strong>Ámbito Geográfico:</strong> España / Unión Europea</p>
+                <p><strong>Canal Oficial de Consultas de Privacidad:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary); text-decoration: underline;">numera-app@outlook.es</a></p>
+                <p><strong>Comunidad Oficial:</strong> <a href="https://discord.gg/Mnr6tu9Xrf" target="_blank" style="color: var(--primary); text-decoration: underline;">Servidor de Discord de Numera</a></p>
             </div>
+
+            <!-- PIE DE PÁGINA INTERNO -->
+            <footer class="site-footer">
+                <div>© 2026 Numera · Todos los derechos reservados.</div>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Inicio</a>
+                    <a href="privacidad.html" class="footer-link" style="color: white; font-weight: 600;">Política de Privacidad</a>
+                    <a href="terminos.html" class="footer-link">Términos de Servicio</a>
+                    <a href="mailto:numera-app@outlook.es" class="footer-link">Contacto</a>
+                </div>
+            </footer>
         </div>
     </section>
 
@@ -148,7 +523,7 @@
                 hamburgerIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
         });
-    
+
         // Efecto del ratón para el fondo
         document.addEventListener('mousemove', (e) => {
             const glow = document.getElementById('cursorGlow');
@@ -157,6 +532,6 @@
                 glow.style.top = e.clientY + 'px';
             }
         });
-</script>
+    </script>
 </body>
 </html>
