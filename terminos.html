@@ -14,7 +14,6 @@
             --text-main: #ffffff;
             --text-muted: #9ca3af;
             --border-glass: rgba(255, 255, 255, 0.1);
-            --accent-gold: #F59E0B;
         }
 
         * {
@@ -51,42 +50,77 @@
 
         .nav-brand {
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            color: var(--primary);
+            text-shadow: 0 0 16px var(--primary-glow);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 0.75rem;
         }
 
         .nav-link {
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.5rem 0.85rem;
-            border-radius: 8px;
+            font-size: 0.92rem;
+            padding: 0.5rem 0.9rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .nav-link .nav-icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .nav-link:hover {
             color: white;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link:hover .nav-icon-box {
+            background: rgba(134, 82, 255, 0.2);
+            border-color: rgba(134, 82, 255, 0.4);
+            color: white;
         }
 
         .nav-link.active {
             color: white;
-            border-bottom: 2px solid var(--primary);
-            background: rgba(134, 82, 255, 0.1);
+            border: 1px solid var(--primary);
+            background: rgba(134, 82, 255, 0.15);
+            box-shadow: 0 0 16px rgba(134, 82, 255, 0.25);
+        }
+
+        .nav-link.active .nav-icon-box {
+            background: rgba(134, 82, 255, 0.35);
+            border-color: var(--primary);
+            color: #c4b5fd;
         }
 
         /* HAMBURGUESA */
@@ -133,19 +167,45 @@
         .mobile-link {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            padding: 0.85rem 1.6rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            width: 85%;
+            max-width: 340px;
+            justify-content: flex-start;
+        }
+
+        .mobile-link .nav-icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .mobile-link:hover, .mobile-link.active {
             color: white;
-            background: rgba(134, 82, 255, 0.15);
+            background: rgba(134, 82, 255, 0.18);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(134, 82, 255, 0.25);
+        }
+
+        .mobile-link.active .nav-icon-box, .mobile-link:hover .nav-icon-box {
+            background: rgba(134, 82, 255, 0.35);
+            border-color: var(--primary);
+            color: #c4b5fd;
         }
 
         /* GLOWS */
@@ -186,9 +246,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid var(--accent-gold);
-            color: #FCD34D;
+            background: rgba(134, 82, 255, 0.15);
+            border: 1px solid var(--primary);
+            color: #c4b5fd;
             padding: 6px 16px;
             border-radius: 100px;
             font-size: 0.85rem;
@@ -201,7 +261,7 @@
         .terms-container h1 {
             font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #FCD34D, #a78bfa);
+            background: linear-gradient(to right, #ffffff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -257,7 +317,7 @@
             content: "•";
             position: absolute;
             left: 0.5rem;
-            color: var(--accent-gold);
+            color: var(--primary);
             font-size: 1.4rem;
             line-height: 1;
         }
@@ -271,8 +331,8 @@
         }
 
         .highlight-box-warning {
-            background: rgba(245, 158, 11, 0.08);
-            border-left: 4px solid var(--accent-gold);
+            background: rgba(134, 82, 255, 0.08);
+            border-left: 4px solid var(--primary);
             padding: 1.5rem 2rem;
             border-radius: 16px;
             margin: 1.75rem 0;
@@ -353,21 +413,26 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <a href="index.html" class="nav-brand" title="Ir a Inicio">
             Numera
         </a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                <span class="nav-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </span>
                 Inicio
             </a>
             <a href="privacidad.html" class="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span class="nav-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </span>
                 Política de Privacidad
             </a>
             <a href="terminos.html" class="nav-link active">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                <span class="nav-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                </span>
                 Términos de Servicio
             </a>
         </div>
@@ -379,15 +444,21 @@
     <!-- MENÚ MÓVIL -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="mobile-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span class="nav-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </span>
             Inicio
         </a>
         <a href="privacidad.html" class="mobile-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <span class="nav-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            </span>
             Política de Privacidad
         </a>
         <a href="terminos.html" class="mobile-link active">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <span class="nav-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </span>
             Términos de Servicio
         </a>
     </div>
@@ -404,25 +475,25 @@
             <div class="update-date">Última actualización y revisión legal: Octubre de 2026</div>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 1. Aceptación y Marco Legal
             </h2>
             <p>El acceso, descarga y uso de <strong>Numera</strong> ("la Aplicación") y de su sitio web oficial se rigen por los presentes Términos y Condiciones, así como por nuestra Política de Privacidad. Estos términos constituyen el marco aplicable entre el usuario y el desarrollador responsable, con pleno respeto a la normativa imperativa en materia de protección de consumidores y usuarios de la Unión Europea y de España (Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios - RDL 1/2007) y a la <strong>Directiva (UE) 2019/770 sobre determinados aspectos de los contratos de suministro de contenidos y servicios digitales</strong>.</p>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                 2. Finalidad del Software y Naturaleza de los Cálculos
             </h2>
             <p>Numera es una herramienta tecnológica independiente diseñada para la anotación y gestión organizativa de presupuestos, balances, gastos, ingresos, deudas, tarjetas de fidelidad y productividad.</p>
             <div class="highlight-box-warning">
                 <p>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent-gold)" style="vertical-align: -4px; margin-right: 6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary)" style="vertical-align: -4px; margin-right: 6px;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
                     <strong>Ausencia de asesoramiento financiero y deber de diligencia:</strong> Numera <strong>NO es una entidad bancaria, institución financiera ni asesora fiscal de inversiones</strong>. Los cálculos de saldo y deuda se ejecutan automáticamente a partir de los datos que tú introduces. Aunque la aplicación ha sido testeada rigurosamente con números decimales, importes positivos y casos límite, pueden concurrir imprecisiones derivadas de redondeos o datos erróneos de entrada. La información no sustituye asesoramiento contable ni bancario oficial. Se recomienda encarecidamente utilizar periódicamente la función <strong>"Exportar Datos"</strong> para conservar copias de seguridad de tus registros ante imprevistos técnicos o cambio de dispositivo.
                 </p>
             </div>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
                 3. Propiedad Intelectual, Licencias de Terceros y Marca "Numera"
             </h2>
             <p>De conformidad con las exigencias de transparencia y la realidad jurídica de los activos del proyecto:</p>
@@ -437,7 +508,7 @@
             </div>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
                 4. Almacenamiento Local y Google Drive
             </h2>
             <p>Numera opera bajo un modelo de <strong>almacenamiento local en el dispositivo del usuario por defecto</strong>:</p>
@@ -447,19 +518,19 @@
             </ul>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-                5. Aportaciones Económicas, GoFundMe y Códigos VIP
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                5. Donaciones Voluntarias en GoFundMe y Códigos VIP de Comunidad
             </h2>
-            <p>La web y la aplicación pueden ofrecer enlaces a plataformas de mecenazgo y microfinanciación colectiva (como <strong>GoFundMe</strong>) para apoyar los costes de desarrollo del proyecto. A tal efecto se estipula de forma rigurosa y transparente:</p>
+            <p>La web y la aplicación pueden incluir enlaces a plataformas de mecenazgo voluntario (como <strong>GoFundMe</strong>) y a la comunidad oficial en <strong>Discord</strong>. Con el fin de garantizar una total transparencia legal hacia los usuarios y cumplir con las políticas de distribución digital, se estipula de forma clara lo siguiente:</p>
             <ul>
-                <li><strong>Naturaleza jurídica de las aportaciones y recompensas:</strong> Cuando una aportación económica realizada por un usuario otorga acceso a un código o recompensa digital prometida (por ejemplo, el canje de un código VIP para el tema Dorado o un rol distintivo en la comunidad de Discord), dicha operación se califica conforme a la legislación aplicable como una aportación con recompensa o contraprestación digital y no como una donación pura a una entidad benéfica de utilidad pública.</li>
-                <li><strong>Consecuencias fiscales:</strong> Estas aportaciones no constituyen donaciones deducibles en el IRPF o impuestos sobre sociedades en virtud de la Ley 49/2002 de régimen fiscal de entidades sin fines lucrativos ni equivalentes internacionales. El responsable declara los ingresos procedentes de actividades económicas o servicios digitales con arreglo al ordenamiento tributario vigente.</li>
-                <li><strong>Condiciones de GoFundMe y Reembolsos:</strong> Las transacciones monetarias se procesan conforme a los <em>Términos de Servicio y la Política de Donaciones de GoFundMe</em> (incluida la Garantía de Protección de Donantes de GoFundMe). Si un usuario solicita y obtiene un reembolso o retrocesión de fondos a través de GoFundMe o de su entidad bancaria, la recompensa o código VIP asociado quedará anulado.</li>
-                <li><strong>Reposición de códigos de buena fe:</strong> Si un usuario que apoyó el proyecto pierde su código VIP por formateo, avería o cambio de terminal, el desarrollador atenderá de buena fe la reposición razonable del código acreditando la aportación previa, dentro de la viabilidad técnica y operativa del software.</li>
+                <li><strong>Donaciones en GoFundMe (100% Voluntarias y Sin Contraprestación):</strong> Cualquier aportación económica realizada en la campaña de GoFundMe es estrictamente voluntaria y tiene como único fin apoyar al creador en los costes de mantenimiento y dedicación al proyecto. <strong>Las donaciones no desbloquean ninguna ventaja, función prémium, tema ni elemento digital dentro de la aplicación Numera.</strong> La aplicación es completamente funcional y gratuita sin necesidad de realizar ninguna aportación.</li>
+                <li><strong>Códigos VIP y Recompensas de Discord (100% Gratuitos y Opcionales):</strong> Las recompensas comunitarias o códigos VIP (como el acceso al Tema Dorado o roles de reconocimiento en el servidor de Discord) son distinciones honoríficas opcionales vinculadas exclusivamente a la participación en la comunidad y a la vinculación voluntaria de la cuenta de Discord con la app. <strong>No requieren ningún tipo de pago monetario ni donación para obtenerse ni desbloquearse.</strong> Únicamente se requiere cumplir los hitos o requisitos comunitarios gratuitos establecidos, y bajo ningún concepto se exigirá ni solicitará dinero para su canje.</li>
+                <li><strong>Naturaleza fiscal de las donaciones:</strong> Las aportaciones voluntarias a través de GoFundMe se procesan conforme a los <em>Términos de GoFundMe</em>. Al ser contribuciones a título particular para apoyar a un desarrollador independiente, no constituyen donaciones benéficas desgravables en el IRPF (no es una entidad de utilidad pública ni ONG conforme a la Ley 49/2002).</li>
+                <li><strong>Prohibición de venta paralela de activos digitales:</strong> En estricto cumplimiento de las directrices de plataformas de distribución como Google Play, el desarrollador no comercializa ventajas in-app a través de pasarelas externas. Cualquier recompensa digital interna es accesible por medios gratuitos de la comunidad.</li>
             </ul>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
                 6. Régimen de Responsabilidad y Derechos Imperativos de los Consumidores
             </h2>
             <div class="highlight-box">
@@ -473,20 +544,19 @@
             </ul>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A3.5 3.5 0 0 1 11 23h1c0-.55-.45-1-1-1zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.55 0 1-.45 1-1 0-.83.67-1.5 1.5-1.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A3.5 3.5 0 0 1 11 23h1c0-.55-.45-1-1-1zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.55 0 1-.45 1-1 0-.83.67-1.5 1.5-1.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/></svg>
                 7. Modificaciones de los Términos
             </h2>
             <p>Cualquier actualización o modificación relevante de los presentes Términos de Servicio será publicada en este sitio web y notificada en la aplicación con una antelación razonable previa a su entrada en vigor, garantizando que los usuarios puedan conocer oportunamente las modificaciones de acuerdo con la buena fe contractual.</p>
 
             <h2>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent-gold)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 8. Jurisdicción, Resolución de Litigios y Contacto
             </h2>
             <div class="contact-box">
                 <p><strong>Responsable del Servicio:</strong> Desarrollador Independiente de Numera</p>
                 <p><strong>Naturaleza:</strong> Proyecto de software de finanzas personales.</p>
                 <p><strong>Sede / Jurisdicción:</strong> España (Unión Europea)</p>
-                <p><strong>Resolución de litigios de consumo:</strong> Los consumidores residentes en la Unión Europea pueden recurrir a la plataforma de resolución de litigios en línea de la Comisión Europea (ODR): <a href="https://ec.europa.eu/consumers/odr" target="_blank" style="color: var(--primary); text-decoration: underline;">https://ec.europa.eu/consumers/odr</a>.</p>
                 <p><strong>Correo Electrónico Oficial:</strong> <a href="mailto:numera-app@outlook.es" style="color: var(--primary); text-decoration: underline;">numera-app@outlook.es</a></p>
                 <p><strong>Comunidad de Discord:</strong> <a href="https://discord.gg/Mnr6tu9Xrf" target="_blank" style="color: var(--primary); text-decoration: underline;">Servidor Oficial de Numera</a></p>
             </div>
