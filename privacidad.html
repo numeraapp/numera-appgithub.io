@@ -343,6 +343,29 @@
             margin-bottom: 1.25rem;
         }
 
+        code {
+            background: rgba(134, 82, 255, 0.14);
+            color: #d8b4fe;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.88em;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+
+        .url-code {
+            word-break: break-all !important;
+            overflow-wrap: anywhere !important;
+            white-space: normal !important;
+            display: inline !important;
+        }
+
+        .privacy-container, .info-card, .highlight-box, .contact-box, p, li {
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
         .contact-box {
             background: rgba(255, 255, 255, 0.04);
             padding: 1.75rem;
@@ -386,7 +409,25 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: block; }
-            .privacy-container { padding: 2rem 1.5rem; border-radius: 28px; }
+            .privacy-section { padding: 6rem 1rem 3rem; }
+            .privacy-container { 
+                padding: 2rem 1.15rem; 
+                border-radius: 24px; 
+                width: 100%; 
+                max-width: 100%;
+                box-sizing: border-box; 
+            }
+            .info-card { 
+                padding: 1.1rem 1rem; 
+                box-sizing: border-box;
+            }
+            .highlight-box {
+                padding: 1.25rem 1rem;
+                box-sizing: border-box;
+            }
+            .privacy-container li { 
+                padding-left: 1.4rem; 
+            }
             .site-footer { flex-direction: column; text-align: center; justify-content: center; }
             .footer-links { justify-content: center; }
         }
@@ -492,7 +533,7 @@
             <p>Para permitirte restaurar tus datos si cambias de dispositivo móvil, Numera ofrece una integración oficial y voluntaria con Google Drive a través de los Servicios de Google Play:</p>
             <div class="info-card">
                 <ul>
-                    <li><strong>Ámbito mínimo y aislado (<code>https://www.googleapis.com/auth/drive.file</code>):</strong> Numera únicamente solicita permiso para crear, leer y actualizar el archivo de copia de seguridad específico generado por la propia aplicación (<code>numera_backup.json</code>).</li>
+                    <li><strong>Ámbito mínimo y aislado (<code class="url-code">https://www.googleapis.com/auth/drive.file</code>):</strong> Numera únicamente solicita permiso para crear, leer y actualizar el archivo de copia de seguridad específico generado por la propia aplicación (<code>numera_backup.json</code>).</li>
                     <li><strong>Ausencia total de acceso al resto de tu cuenta:</strong> Numera <strong>no tiene acceso</strong> a tus carpetas personales de Google Drive, tus correos de Gmail, tus imágenes de Google Fotos ni ningún otro documento o archivo ajeno al respaldo de Numera.</li>
                     <li><strong>Transmisión directa cliente-servidor:</strong> El archivo se transmite de forma cifrada (HTTPS/TLS) directamente desde tu teléfono móvil a los servidores de Google Drive en los que tú tienes tu cuenta. El archivo no pasa en ningún momento por servidores del desarrollador de Numera.</li>
                     <li><strong>Control y eliminación inmediata:</strong> Puedes desconectar la cuenta de Google Drive en cualquier momento o pulsar "Eliminar copia de seguridad de Drive" en la app para borrar definitivamente el archivo de los servidores de Google.</li>
