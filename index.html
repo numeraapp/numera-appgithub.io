@@ -593,8 +593,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            padding: 0.65rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 10px;
         }
 
         .transaction-item.new-tx {
@@ -616,16 +617,55 @@
             border-bottom: none;
         }
 
+        .tx-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
         .tx-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
             background: rgba(255, 255, 255, 0.05);
-            margin-right: 12px;
+            flex-shrink: 0;
+            margin-right: 0;
+        }
+
+        .tx-info {
+            min-width: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tx-title {
+            font-weight: 600;
+            color: white;
+            font-size: 0.86rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tx-date {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .tx-amount {
+            font-weight: 700;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
         }
 
         /* Bento Features */
@@ -902,14 +942,144 @@
         }
 
         @media (max-width: 992px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 7rem; gap: 3rem; }
-            .hero-content { margin-bottom: 0; display: flex; flex-direction: column; align-items: center; width: 100%; }
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                padding-top: 6.5rem; 
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+                padding-bottom: 3.5rem;
+                gap: 2.5rem; 
+                overflow-x: hidden;
+                width: 100%;
+            }
+            .hero-content { 
+                margin-bottom: 0; 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%; 
+                max-width: 580px;
+                margin: 0 auto;
+            }
             .hero p { max-width: 600px; }
-            .cta-group { justify-content: center; }
-            .hero-visual { width: 100%; }
-            .device-mockup { width: 280px; }
+            .cta-group { 
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+                width: 100% !important;
+                max-width: 440px !important;
+                margin: 0 auto 0.5rem auto;
+            }
+            .hero-visual { 
+                width: 100%; 
+                max-width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                perspective: none !important;
+                transform: none !important;
+                overflow: visible;
+                margin-top: 0.5rem;
+            }
+            .device-wrapper { 
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                transform: none !important;
+                transform-style: flat !important;
+                animation: floatDeviceMobile 5s ease-in-out infinite !important;
+                filter: none !important;
+                display: flex;
+                justify-content: center;
+                position: relative;
+            }
+            .device-mockup { 
+                width: min(320px, calc(100vw - 32px)) !important;
+                max-width: 320px !important;
+                height: auto !important;
+                aspect-ratio: 320 / 640;
+                transform: none !important;
+                transform-style: flat !important;
+                margin: 0 auto;
+                border-radius: 40px !important;
+                box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 2px rgba(255, 255, 255, 0.08) !important;
+                position: relative;
+                overflow: hidden;
+            }
+            .device-mockup::before {
+                display: none !important;
+            }
+            .device-mockup::after {
+                border-radius: 38px !important;
+            }
+            .device-glow {
+                inset: -8px !important;
+                filter: blur(25px) !important;
+                opacity: 0.4 !important;
+            }
+            .app-demo {
+                padding: 2.8rem 1rem 1rem !important;
+                gap: 1rem !important;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+            }
+            .demo-balance-card {
+                padding: 1.15rem 1.25rem !important;
+                border-radius: 20px !important;
+            }
+            .balance-amount {
+                font-size: clamp(1.75rem, 6vw, 2.15rem) !important;
+                margin-bottom: 0.6rem !important;
+                white-space: nowrap;
+                letter-spacing: -0.5px;
+            }
+            .demo-actions {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.65rem !important;
+                width: 100%;
+            }
+            .demo-btn {
+                min-height: 44px !important;
+                padding: 0.75rem 0.5rem !important;
+                font-size: 0.9rem !important;
+                border-radius: 14px !important;
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                white-space: nowrap;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .demo-transactions {
+                padding: 1rem !important;
+                border-radius: 20px !important;
+                flex: 1;
+                min-height: 140px;
+                box-sizing: border-box;
+            }
+            .transaction-item {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 8px !important;
+                padding: 0.65rem 0 !important;
+            }
             .bento-grid { grid-template-columns: 1fr; }
             .bento-large { grid-column: span 1; }
+        }
+
+        @keyframes floatDeviceMobile {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         @media (max-width: 768px) {
@@ -918,20 +1088,34 @@
         }
 
         @media (max-width: 600px) {
-            .hero { padding: 6rem 1.5rem 3rem; }
-            .brand-hero { font-size: 3.5rem; }
-            .cta-group { flex-direction: column; width: 100%; }
-            .btn-primary-large, .btn-outline, .btn-donate { width: 100%; text-align: center; }
-            .device-mockup { width: 260px; }
+            .hero { padding: 6rem 1rem 3rem; }
+            .brand-hero { font-size: 3.2rem; }
+            .cta-group { 
+                display: flex !important;
+                flex-direction: column !important; 
+                width: 100% !important; 
+                max-width: 320px !important;
+                margin: 0 auto;
+                gap: 0.75rem !important;
+            }
+            .btn-primary-large, .btn-outline, .btn-donate { 
+                width: 100% !important; 
+                text-align: center; 
+                min-height: 48px;
+            }
+            .device-mockup { 
+                width: min(320px, calc(100vw - 28px)) !important; 
+            }
         }
 
         @media (max-width: 380px) {
-            .brand-hero { font-size: 2.8rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .demo-balance-card { padding: 1.2rem; }
-            .balance-amount { font-size: 1.8rem; }
-            .demo-btn { padding: 0.6rem; font-size: 0.8rem; }
-            .device-mockup { width: 240px; }
+            .brand-hero { font-size: 2.6rem; }
+            .hero h1 { font-size: 2rem; }
+            .demo-balance-card { padding: 1rem !important; }
+            .balance-amount { font-size: 1.65rem !important; }
+            .demo-btn { padding: 0.65rem 0.4rem !important; font-size: 0.85rem !important; }
+            .device-mockup { width: calc(100vw - 24px) !important; }
+            .app-demo { padding: 2.6rem 0.85rem 0.85rem !important; }
         }
 
         @media (min-width: 1800px) {
@@ -1031,45 +1215,47 @@
         /* --------------------------------- */
 
     
-        /* --- Premium 3D Apple-like Styles --- */
-        .hero-visual {
-            perspective: 1200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: phoneEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
-        }
-        .device-wrapper {
-            transform-style: preserve-3d;
-            animation: floatDevice3D 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-            filter: drop-shadow(-30px 50px 60px rgba(0, 0, 0, 0.6));
-        }
-        .device-mockup {
-            transform-style: preserve-3d;
-            box-shadow: 
-                inset 0 0 0 2px rgba(255,255,255,0.1),
-                inset 0 0 20px rgba(255,255,255,0.05),
-                30px 30px 60px rgba(0,0,0,0.6);
-            position: relative;
-            background: #000;
-        }
-        .device-mockup::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 36px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 45%);
-            pointer-events: none;
-            z-index: 10;
-        }
-        .device-mockup::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 100%);
-            z-index: -1;
-            filter: blur(1px);
+        /* --- Premium 3D Apple-like Styles (Solo Desktop) --- */
+        @media (min-width: 993px) {
+            .hero-visual {
+                perspective: 1200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: phoneEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+            }
+            .device-wrapper {
+                transform-style: preserve-3d;
+                animation: floatDevice3D 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+                filter: drop-shadow(-30px 50px 60px rgba(0, 0, 0, 0.6));
+            }
+            .device-mockup {
+                transform-style: preserve-3d;
+                box-shadow: 
+                    inset 0 0 0 2px rgba(255,255,255,0.1),
+                    inset 0 0 20px rgba(255,255,255,0.05),
+                    30px 30px 60px rgba(0,0,0,0.6);
+                position: relative;
+                background: #000;
+            }
+            .device-mockup::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 36px;
+                background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 45%);
+                pointer-events: none;
+                z-index: 10;
+            }
+            .device-mockup::before {
+                content: '';
+                position: absolute;
+                inset: -4px;
+                border-radius: 40px;
+                background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 100%);
+                z-index: -1;
+                filter: blur(1px);
+            }
         }
         @keyframes floatDevice3D {
             0% { transform: translateY(0px) rotateX(15deg) rotateY(-25deg) rotateZ(5deg); }
@@ -1235,24 +1421,24 @@
                             <h3 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;">Movimientos recientes</h3>
                             <div id="txList">
                                 <div class="transaction-item init-tx-1">
-                                    <div style="display: flex; align-items: center;">
+                                    <div class="tx-left">
                                         <div class="tx-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#10B981"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
-                                    <div>
-                                        <div style="font-weight: 600; color: white;">Nómina</div>
-                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Hoy</div>
+                                        <div class="tx-info">
+                                            <div class="tx-title">Nómina</div>
+                                            <div class="tx-date">Hoy</div>
+                                        </div>
                                     </div>
+                                    <div class="tx-amount" style="color: var(--accent-green);">+ € 1,300.00</div>
                                 </div>
-                                <div style="color: var(--accent-green); font-weight: 700;">+ € 1,300.00</div>
-                            </div>
-                            <div class="transaction-item init-tx-2">
-                                <div style="display: flex; align-items: center;">
-                                    <div class="tx-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#CC99FF"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
-                                    <div>
-                                        <div style="font-weight: 600; color: white;">Supermercado</div>
-                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Ayer</div>
+                                <div class="transaction-item init-tx-2">
+                                    <div class="tx-left">
+                                        <div class="tx-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#CC99FF"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+                                        <div class="tx-info">
+                                            <div class="tx-title">Supermercado</div>
+                                            <div class="tx-date">Ayer</div>
+                                        </div>
                                     </div>
-                                </div>
-                                    <div style="color: var(--accent-red); font-weight: 700;">- € 50.00</div>
+                                    <div class="tx-amount" style="color: var(--accent-red);">- € 50.00</div>
                                 </div>
                             </div>
                         </div>
@@ -1624,14 +1810,14 @@
             const txEl = document.createElement('div');
             txEl.className = 'transaction-item new-tx';
             txEl.innerHTML = `
-                <div style="display: flex; align-items: center;">
+                <div class="tx-left">
                     <div class="tx-icon">${sample.icon}</div>
-                    <div>
-                        <div style="font-weight: 600; color: white;">${sample.title}</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Ahora mismo</div>
+                    <div class="tx-info">
+                        <div class="tx-title">${sample.title}</div>
+                        <div class="tx-date">Ahora mismo</div>
                     </div>
                 </div>
-                <div style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight: 700;">
+                <div class="tx-amount" style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'};">
                     ${isIncome ? '+' : '-'} € ${amount.toFixed(2)}
                 </div>
             `;
