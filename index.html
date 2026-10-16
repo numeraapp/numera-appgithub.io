@@ -518,8 +518,97 @@
         .balance-amount {
             font-size: 2.2rem;
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
             margin-bottom: 1rem;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            display: inline-flex;
+            align-items: baseline;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            line-height: 1.18;
+            user-select: none;
+        }
+
+        .odo-container {
+            display: inline-flex;
+            align-items: baseline;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .odo-slot {
+            position: relative;
+            display: inline-block;
+            height: 1.18em;
+            line-height: 1.18em;
+            overflow: hidden;
+            vertical-align: bottom;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            text-align: center;
+            width: 0.62em;
+        }
+
+        .odo-slot-cents {
+            width: 0.62em;
+            font-size: 0.85em;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+
+        .odo-digit {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            will-change: transform, opacity;
+            transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+        }
+
+        .odo-static {
+            display: inline-flex;
+            align-items: baseline;
+            justify-content: center;
+            vertical-align: baseline;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
+
+        .odo-sep {
+            width: 0.28em;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .odo-comma {
+            width: 0.28em;
+            opacity: 0.7;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .odo-sign {
+            margin-right: 3px;
+            font-weight: 800;
+        }
+
+        .odo-currency {
+            font-size: 0.7em;
+            opacity: 0.9;
+            margin-left: 5px;
+            font-weight: 700;
+            display: inline-block;
+            vertical-align: baseline;
         }
 
         .demo-actions {
@@ -1402,7 +1491,7 @@
 
                         <div class="demo-balance-card" id="balanceCard">
                             <div class="balance-label">Balance Total</div>
-                            <div class="balance-amount" id="balanceValue">€ 1,250.00</div>
+                            <div class="balance-amount" id="balanceValue">1.250,<span style="opacity: 0.7; font-size: 0.85em;">00</span> <span style="font-size: 0.7em; opacity: 0.9; margin-left: 2px;">€</span></div>
                             <div style="font-size: 0.75rem; opacity: 0.7; display: flex; align-items: center; gap: 4px;">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.09-.36-.13-.55-.13H13v-6c0-.55-.45-1-1-1s-1 .45-1 1v10.74l-3.43-.72c-.08-.01-.15-.02-.24-.02-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.37z"/></svg> Interactúa con los botones
                             </div>
@@ -1787,8 +1876,196 @@
         let expenseIndex = 0;
         let incomeIndex = 0;
 
-        function formatMoney(amount) {
-            return '€ ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        /**
+         * Desglosa el importe en componentes con claves estables ancladas a las unidades.
+         * int-0 siempre son las unidades, int-1 las decenas, etc.
+         */
+        function parseAmountComponents(amount) {
+            const isNegative = amount < 0;
+            const abs = Math.abs(amount);
+            const totalCents = Math.round(abs * 100);
+            const intVal = Math.floor(totalCents / 100);
+            const centsVal = totalCents % 100;
+            const intStr = intVal.toLocaleString('de-DE'); // Separa miles con punto
+            const centsStr = (centsVal < 10 ? '0' : '') + centsVal;
+
+            const items = [];
+
+            if (isNegative) {
+                items.push({ key: 'sign', char: '-', type: 'sign' });
+            }
+
+            // Dígitos enteros y separadores de miles anclados desde la coma decimal
+            const intLen = intStr.length;
+            for (let i = 0; i < intLen; i++) {
+                const char = intStr[i];
+                const distFromEnd = intLen - 1 - i;
+                if (char === '.') {
+                    items.push({ key: 'sep-' + distFromEnd, char: '.', type: 'sep' });
+                } else {
+                    items.push({ key: 'int-' + distFromEnd, char: char, type: 'int' });
+                }
+            }
+
+            // Coma decimal en tono atenuado
+            items.push({ key: 'comma', char: ',', type: 'comma' });
+
+            // Céntimos (décimas y centésimas) con opacidad 0.7
+            items.push({ key: 'cents-1', char: centsStr[0], type: 'cent' });
+            items.push({ key: 'cents-0', char: centsStr[1], type: 'cent' });
+
+            // Símbolo de divisa (30% menor que el entero)
+            items.push({ key: 'currency', char: '€', type: 'currency' });
+
+            return items;
+        }
+
+        /**
+         * Actualiza el odómetro del balance con animación vertical idéntica a AnimatedContent:
+         * - Al registrar un ingreso: las cifras ruedan hacia arriba (nueva entra desde abajo).
+         * - Al registrar un gasto: las cifras ruedan hacia abajo (nueva entra desde arriba).
+         * - Cifras no afectadas se mantienen perfectamente quietas.
+         */
+        function updateOdometer(newAmount, isIncome) {
+            const items = parseAmountComponents(newAmount);
+            let container = balanceEl.querySelector('.odo-container');
+            if (!container) {
+                balanceEl.innerHTML = '';
+                container = document.createElement('div');
+                container.className = 'odo-container';
+                balanceEl.appendChild(container);
+            }
+
+            const currentSlots = new Map();
+            Array.from(container.children).forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (key) currentSlots.set(key, el);
+            });
+
+            const newChildren = [];
+
+            items.forEach((item) => {
+                let slot = currentSlots.get(item.key);
+
+                if (item.type === 'int' || item.type === 'cent') {
+                    // Ranura de dígito numérico
+                    if (!slot) {
+                        slot = document.createElement('span');
+                        slot.className = 'odo-slot' + (item.type === 'cent' ? ' odo-slot-cents' : '');
+                        slot.setAttribute('data-key', item.key);
+                        const digitEl = document.createElement('span');
+                        digitEl.className = 'odo-digit';
+                        digitEl.textContent = item.char;
+                        slot.appendChild(digitEl);
+
+                        if (isIncome !== undefined) {
+                            digitEl.style.transform = isIncome ? 'translateY(100%)' : 'translateY(-100%)';
+                            digitEl.style.opacity = '0';
+                            requestAnimationFrame(() => {
+                                digitEl.style.transform = 'translateY(0)';
+                                digitEl.style.opacity = '1';
+                            });
+                        }
+                    } else {
+                        // Limpiar dígitos antiguos que aún sigan animando
+                        const existingDigits = slot.querySelectorAll('.odo-digit');
+                        if (existingDigits.length > 1) {
+                            for (let d = 0; d < existingDigits.length - 1; d++) {
+                                existingDigits[d].remove();
+                            }
+                        }
+
+                        const currentDigitEl = slot.querySelector('.odo-digit:last-child');
+                        const currentChar = currentDigitEl ? currentDigitEl.textContent : '';
+
+                        if (currentChar !== item.char) {
+                            // Cifra modificada: animación vertical según dirección
+                            const outgoing = currentDigitEl;
+                            const incoming = document.createElement('span');
+                            incoming.className = 'odo-digit';
+                            incoming.textContent = item.char;
+
+                            if (isIncome) {
+                                // Ingreso: rueda hacia arriba
+                                incoming.style.transform = 'translateY(100%)';
+                                incoming.style.opacity = '0';
+                                slot.appendChild(incoming);
+
+                                requestAnimationFrame(() => {
+                                    if (outgoing) {
+                                        outgoing.style.transform = 'translateY(-100%)';
+                                        outgoing.style.opacity = '0';
+                                    }
+                                    incoming.style.transform = 'translateY(0)';
+                                    incoming.style.opacity = '1';
+                                });
+                            } else {
+                                // Gasto: rueda hacia abajo
+                                incoming.style.transform = 'translateY(-100%)';
+                                incoming.style.opacity = '0';
+                                slot.appendChild(incoming);
+
+                                requestAnimationFrame(() => {
+                                    if (outgoing) {
+                                        outgoing.style.transform = 'translateY(100%)';
+                                        outgoing.style.opacity = '0';
+                                    }
+                                    incoming.style.transform = 'translateY(0)';
+                                    incoming.style.opacity = '1';
+                                });
+                            }
+
+                            setTimeout(() => {
+                                if (outgoing && outgoing.parentNode === slot) {
+                                    slot.removeChild(outgoing);
+                                }
+                            }, 450);
+                        }
+                        currentSlots.delete(item.key);
+                    }
+                } else {
+                    // Elemento estático (separador de miles, coma, signo o divisa)
+                    if (!slot) {
+                        slot = document.createElement('span');
+                        slot.setAttribute('data-key', item.key);
+                        if (item.type === 'sep') {
+                            slot.className = 'odo-static odo-sep';
+                            slot.textContent = item.char;
+                        } else if (item.type === 'comma') {
+                            slot.className = 'odo-static odo-comma';
+                            slot.textContent = item.char;
+                        } else if (item.type === 'sign') {
+                            slot.className = 'odo-static odo-sign';
+                            slot.textContent = item.char;
+                        } else if (item.type === 'currency') {
+                            slot.className = 'odo-currency';
+                            slot.textContent = item.char;
+                        }
+                    }
+                    currentSlots.delete(item.key);
+                }
+
+                newChildren.push(slot);
+            });
+
+            // Ranuras retiradas si la longitud disminuyó
+            currentSlots.forEach(oldSlot => {
+                oldSlot.style.transition = 'transform 300ms ease, opacity 250ms ease';
+                oldSlot.style.transform = isIncome ? 'translateY(-100%)' : 'translateY(100%)';
+                oldSlot.style.opacity = '0';
+                setTimeout(() => {
+                    if (oldSlot.parentNode === container) {
+                        container.removeChild(oldSlot);
+                    }
+                }, 320);
+            });
+
+            // Mantener el orden exacto de los hijos en el DOM
+            newChildren.forEach((child, idx) => {
+                if (container.children[idx] !== child) {
+                    container.insertBefore(child, container.children[idx] || null);
+                }
+            });
         }
 
         function addTransaction(type) {
@@ -1799,9 +2076,9 @@
 
             const amount = sample.amount;
             balance += isIncome ? amount : -amount;
-            balanceEl.textContent = formatMoney(balance);
+            updateOdometer(balance, isIncome);
             
-            // Efecto visual en la tarjeta
+            // Efecto visual háptico en la tarjeta
             const card = document.getElementById('balanceCard');
             card.style.transform = 'scale(0.98)';
             setTimeout(() => card.style.transform = '', 150);
@@ -1817,8 +2094,8 @@
                         <div class="tx-date">Ahora mismo</div>
                     </div>
                 </div>
-                <div class="tx-amount" style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'};">
-                    ${isIncome ? '+' : '-'} € ${amount.toFixed(2)}
+                <div class="tx-amount" style="color: ${isIncome ? 'var(--accent-green)' : 'var(--accent-red)'}; font-variant-numeric: tabular-nums;">
+                    ${isIncome ? '+' : '-'} ${amount.toFixed(2).replace('.', ',')} €
                 </div>
             `;
 
@@ -1829,6 +2106,9 @@
                 txList.lastElementChild.remove();
             }
         }
+
+        // Inicialización inmediata del odómetro en el balance del móvil virtual
+        updateOdometer(balance, undefined);
 
         // Efecto del ratón para el fondo y las tarjetas Bento
         document.addEventListener('mousemove', (e) => {
