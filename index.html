@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="BmzIuNO5RnCor8JuQjjDIjsQqLYep4xe2040ObUo-24" />
     <title>Numera - Tu app de finanzas personales</title>
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <!-- Favicons de máxima visibilidad y tamaño para la pestaña del navegador -->
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhFBMVEU6d7Q4dbMzercxdbM1fLkwebgyebcqdbczerkxebkud7g1fLt9qtFCg707gLx0pc9toMykxN80e7o9gb1BhL6dwN1QjcNmnMsgbrTG2uqyzeSWu9qqx+FalMZ5qNH8/f7n7/aKs9Yaa7JJicHZ5vG70uaCrdNtoM0SZa/P4O0OY64AAACqFWtYAAAAEnRSTlMCGl0ntdJK/ovD7N/VPn/9ufk2ydBOAAAAAWJLR0QrJLnkCAAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+oKEgkJGAbUDWEAAAHwSURBVDjLfVMBkqMgEIxEd5Jc7rI3BEEHUEDFzf8feKPe1iapzVpFadHNTE/T7nY/PIXYvwb3oqwQ317BbygRAOF1gQPjAMcf2p8Yx8Nr/BdyAxDP++L/kaJimNfzEELCxjgiYrkTp+JJ+taWB+R3tYz6SNjD0vd0VfXyoc+/n5054ToaSoNGNi3Z8lE3+wbOo1nlU9f1wf55xCGSbX0CNOnihq4b7fmOcORzviPfTGDkxbu+G1RbfeGsG+q+G83FTolGGhpLCt2nD2/v2YcQJrIYUU9ToMnnNNdqIxRnIvvRUtOq4GUyMRpeM/oxbXNoa/vOOs/Kua8OwV8unvUSJLs4JSwjnc0h913XWD0n7blDDXMcaSVwfSaESQ5dr0anU5zn+RbRjQpWApJqPwblh6FRVpusrCJWZa2La2AKMM4H3lDkMw8bZ0i1q5O5YV1uBATDNyAlGJN8suQ4j5gcN10J4mqWA0mmOnu+C+lt23K9KcVtTDHpCFeds9cJIF1TvLET8TbLMK0aBAbSEmKMILVPqCxrYWetzVsmBZcK9JcCMWA4DSl7Yk9rMJuRQgc5z7CkJUKmqjwZw6LN6Sg+k8heh+yc9tQGFl7shTgI8ZVHwdIuQbENWpq7CNyl+YhmSaOEqtx9/xRCiLL89mf/Bx6ANLaHJnOaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI2LTEwLTE4VDA5OjA5OjA2KzAwOjAw9+9HIAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNi0xMC0xOFQwOTowOTowNiswMDowMIay/5wAAAAASUVORK5CYII=">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=5">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=5">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=5">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=5">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png?v=5">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128.png?v=5">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=5">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5">
+    <script>
+        (function() {
+            var iconUri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhFBMVEU6d7Q4dbMzercxdbM1fLkwebgyebcqdbczerkxebkud7g1fLt9qtFCg707gLx0pc9toMykxN80e7o9gb1BhL6dwN1QjcNmnMsgbrTG2uqyzeSWu9qqx+FalMZ5qNH8/f7n7/aKs9Yaa7JJicHZ5vG70uaCrdNtoM0SZa/P4O0OY64AAACqFWtYAAAAEnRSTlMCGl0ntdJK/ovD7N/VPn/9ufk2ydBOAAAAAWJLR0QrJLnkCAAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+oKEgkJGAbUDWEAAAHwSURBVDjLfVMBkqMgEIxEd5Jc7rI3BEEHUEDFzf8feKPe1iapzVpFadHNTE/T7nY/PIXYvwb3oqwQ317BbygRAOF1gQPjAMcf2p8Yx8Nr/BdyAxDP++L/kaJimNfzEELCxjgiYrkTp+JJ+taWB+R3tYz6SNjD0vd0VfXyoc+/n5054ToaSoNGNi3Z8lE3+wbOo1nlU9f1wf55xCGSbX0CNOnihq4b7fmOcORzviPfTGDkxbu+G1RbfeGsG+q+G83FTolGGhpLCt2nD2/v2YcQJrIYUU9ToMnnNNdqIxRnIvvRUtOq4GUyMRpeM/oxbXNoa/vOOs/Kua8OwV8unvUSJLs4JSwjnc0h913XWD0n7blDDXMcaSVwfSaESQ5dr0anU5zn+RbRjQpWApJqPwblh6FRVpusrCJWZa2La2AKMM4H3lDkMw8bZ0i1q5O5YV1uBATDNyAlGJN8suQ4j5gcN10J4mqWA0mmOnu+C+lt23K9KcVtTDHpCFeds9cJIF1TvLET8TbLMK0aBAbSEmKMILVPqCxrYWetzVsmBZcK9JcCMWA4DSl7Yk9rMJuRQgc5z7CkJUKmqjwZw6LN6Sg+k8heh+yc9tQGFl7shTgI8ZVHwdIuQbENWpq7CNyl+YhmSaOEqtx9/xRCiLL89mf/Bx6ANLaHJnOaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI2LTEwLTE4VDA5OjA5OjA2KzAwOjAw9+9HIAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNi0xMC0xOFQwOTowOTowNiswMDowMIay/5wAAAAASUVORK5CYII=";
+            var head = document.head || document.getElementsByTagName('head')[0];
+            ['icon', 'shortcut icon'].forEach(function(r) {
+                var link = document.querySelector("link[rel='" + r + "']") || document.createElement('link');
+                link.type = 'image/png';
+                link.rel = r;
+                link.href = iconUri;
+                if (!link.parentNode) head.appendChild(link);
+            });
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
